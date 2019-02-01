@@ -1,5 +1,6 @@
 package modele;
 import java.util.ArrayList;
+import modele.movables.*;
 public class State {
     String lvl;
 
