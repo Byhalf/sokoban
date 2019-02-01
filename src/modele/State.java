@@ -23,6 +23,8 @@ public class State {
                 height += 1;
             }
         }
+        dim[0]= width;
+        dim[1]= height;
         return dim;
     }
 
@@ -45,12 +47,7 @@ public class State {
                             break;
 
                     }
-                /*
-                if (lvl.charAt(j)!='\n'){
 
-                    grid[i][j] = lvl.charAt(j);
-                }else break;
-            }*/
                 }
             }
             return grid;
