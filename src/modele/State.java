@@ -1,6 +1,11 @@
 package modele;
 public class State {
     String lvl;
+
+    public Case[][] getGrid() {
+        return grid;
+    }
+
     Case[][] grid;
 
 
