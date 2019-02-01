@@ -2,6 +2,11 @@ package modele;
 import java.util.ArrayList;
 public class State {
     String lvl;
+
+    public Case[][] getGrid() {
+        return grid;
+    }
+
     Case[][] grid;
     ArrayList<Box> boxes = new ArrayList<Box>();
 
