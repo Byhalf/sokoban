@@ -1,7 +1,9 @@
 package modele;
+import java.util.ArrayList;
 public class State {
     String lvl;
     Case[][] grid;
+    ArrayList<Box> boxes = new ArrayList<Box>();
 
 
     public State(String lvl){
@@ -51,6 +53,16 @@ public class State {
                 }
             }
             return grid;
+        }
+
+        public boolean isFinished(){
+            boxes = this.boxes;
+            for (Box box:boxes){
+                if(grid[box.x][box.y] != Case.GOAL){
+                    return false;
+                }
+            }
+            return true;
         }
 
 

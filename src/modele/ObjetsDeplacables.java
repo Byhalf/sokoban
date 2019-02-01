@@ -1,4 +1,4 @@
-public class abstract ObjetsDeplacables{
+public abstract class  ObjetsDeplacables{
     public int x;
     public int y;
 
