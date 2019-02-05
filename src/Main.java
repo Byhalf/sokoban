@@ -1,17 +1,19 @@
 import utulities.*;
-
+import modele.*;
 import java.util.Arrays;
 
 public class Main {
 
     public static void main(String[] args) throws Exception{
 
-        String filePath1 = "/home/gareth/IdeaProjects/sokoban/src/levels/lvl.xsb";
+        String filePath1 = "src/levels/lvl.xsb";
         String levels = FileParser.parse(filePath1);
-        //System.out.println(FileParser.parse(filePath1));
-        String[] levelSplit = LevelMaker.splitLevels(levels);
-        System.out.println(Arrays.toString(levelSplit));
-        //LevelMaker test = new LevelMaker(levels);
-        //System.out.println(Arrays.toString(test.getLevelsList()));
+        LevelMaker test = new LevelMaker(levels);
+        String level = test.getLevelAsString(1);
+        System.out.println(level);
+        State etat  = new State(level);
+        System.out.println(etat.getDim(level)[0]);
+        System.out.println(etat.getDim(level)[1]);
+
     }
 }
