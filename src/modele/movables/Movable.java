@@ -38,6 +38,7 @@ public abstract class Movable{
         if (grid[x][y]==Case.WALL){
             return false;
         }
+
         return true;
 
     }
