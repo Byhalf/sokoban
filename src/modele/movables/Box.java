@@ -11,7 +11,7 @@ public class Box extends Movable{
         super.deplacement(d);
     }
 
-    public boolean isPossible(State grid,char d){
+    public boolean isPossible(State grid,Direction d){
         int x1=x;
         int y1=y;
         if(super.isPossible(grid,d)){

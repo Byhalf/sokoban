@@ -31,20 +31,20 @@ public abstract class Movable{
 
     }
 
-    public boolean isPossible(State tab,char d){
+    public boolean isPossible(State tab,Direction d){
         int x1=this.x;
         int y1=this.y;
         switch(d){
-            case 'l':
+            case L:
                 x1-=1;
                 break;
-            case 'r':
+            case R:
                 x1+=1;
                 break;
-            case 'u':
+            case U:
                 y1-=1;
                 break;
-            case 'd':
+            case D:
                 y1+=1;
                 break;
         }

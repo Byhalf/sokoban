@@ -16,7 +16,7 @@ public class Player extends Movable{
     }
 
     @Override
-    public boolean isPossible(State tab,char d) {
+    public boolean isPossible(State tab,Direction d) {
         int x1 = x;
         int y1 = y;
         if (super.isPossible(tab, d)) {
