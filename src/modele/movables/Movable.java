@@ -13,18 +13,18 @@ public abstract class Movable{
 
     }
 
-    public void deplacement(char d){
+    public void deplacement(Direction d){
         switch(d){
-            case 'l':
+            case L:
                 this.x-=1;
                 break;
-            case 'r':
+            case R:
                 this.x+=1;
                 break;
-            case 'u':
+            case U:
                 this.y-=1;
                 break;
-            case 'd':
+            case D:
                 this.y+=1;
                 break;
         }
