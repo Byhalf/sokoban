@@ -5,18 +5,27 @@ import modele.*;
 public class Box extends Movable{
     public int x;
     public int y;
-    public int testx;
-    public int testy;
+
 
     public void deplacement(char d){
         super.deplacement(d);
     }
 
-    public boolean isPossible(State grid,int x,int y){
-        if (!super.isPossible(grid,x,y)){
-            return false;
+    public boolean isPossible(State grid,char d){
+        int x1=x;
+        int y1=y;
+        if(super.isPossible(grid,d)){
+            for (Box m:grid.movables) {
+                if (m.x == x1 && m.y == y1) {
+                    return false;
+                }
+            }
+            return true;
         }
-        return true;
+//        if (super.isPossible(grid,x,y)){
+//            return false;
+//        }
+//        return true;
 
     }
 
