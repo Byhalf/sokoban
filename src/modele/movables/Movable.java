@@ -48,8 +48,8 @@ public abstract class Movable{
                 y1+=1;
                 break;
         }
-        Case[][] grid = tab.getGrid();
-        return!(grid[x1][y1]==Case.WALL);
+        Grid grid = tab.getGrid();
+        return!(grid.getCase(x1,y1)==Case.WALL);
 
 
     }

@@ -15,7 +15,7 @@ public class Box extends Movable{
         int x1=x;
         int y1=y;
         if(super.isPossible(tab,d)){
-            for (Box m:tab.boxes) {
+            for (Box m:tab.getBoxes()) {
                 if (m.x == x1 && m.y == y1) {
                     return false;
                 }

@@ -68,7 +68,7 @@ public class LevelMaker {
             }
 
         }
-        return new State(new Grid(grid),boxes,player);
+        return new State(new Grid(grid,getDimX(),getDimY()),boxes,player);
 
     }
 
