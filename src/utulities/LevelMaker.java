@@ -7,12 +7,12 @@ import modele.movables.Box;
 import modele.movables.Player;
 
 public class LevelMaker {
-    int dimX = 0;
-    int dimY = 0;
+    private int dimX = 0;
+    private int dimY = 0;
     private String level;
-    Case[][] grid;
-    Player player;
-    ArrayList<Box> boxes = new ArrayList<Box>();
+    private Case[][] grid;
+    private Player player;
+    private ArrayList<Box> boxes = new ArrayList<Box>();
 
 
 

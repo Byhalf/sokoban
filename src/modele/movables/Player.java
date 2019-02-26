@@ -20,7 +20,7 @@ public class Player extends Movable{
         int x1 = x;
         int y1 = y;
         if (super.isPossible(tab, d)) {
-            for (Box m : tab.movables) {
+            for (Box m : tab.getBoxes()) {
                 if (m.getX() == x1 && m.getY() == y1) {
                     m.isPossible(tab, d);
                 }
