@@ -1,8 +1,14 @@
 package modele;
-//implémenté enumerate soit sol soit mur soit cible
+
+import utulities.LevelMaker;
+
 public class Grid {
-    //pas char mais classe enumerate.case
-    char[][] gameGrid;
-
-
+    Case[][] grid;
+    public Grid(Case[][] grid){
+        //peut être changer ça je trouve ça bizare
+        this.grid = grid;
+    }
+    public Case getCase(int x, int y){
+        return grid[x][y];
+    }
 }
