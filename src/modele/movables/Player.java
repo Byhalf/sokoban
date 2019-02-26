@@ -3,11 +3,11 @@ package modele.movables;
 import modele.*;
 
 public class Player extends Movable{
-    public int x;
-    public int y;
+    private int x;
+    private int y;
 
 
-    public void deplacement(char d){
+    public void deplacement(Direction d){
         super.deplacement(d);
     }
 
@@ -21,7 +21,7 @@ public class Player extends Movable{
         int y1 = y;
         if (super.isPossible(tab, d)) {
             for (Box m : tab.movables) {
-                if (m.x == x1 && m.y == y1) {
+                if (m.getX() == x1 && m.getY() == y1) {
                     m.isPossible(tab, d);
                 }
             }

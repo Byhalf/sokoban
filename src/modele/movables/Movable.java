@@ -3,8 +3,8 @@ package modele.movables;
 import modele.*;
 
 public abstract class Movable{
-    public int x;
-    public int y;
+    private int x;
+    private int y;
 
 
     public Movable(int x,int y){
@@ -49,10 +49,8 @@ public abstract class Movable{
                 break;
         }
         Case[][] grid = tab.getGrid();
-        if (grid[x1][y1]==Case.WALL){
-            return false;
-        }
-        return true;
+        return!(grid[x1][y1]==Case.WALL);
+
 
     }
 }
