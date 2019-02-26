@@ -10,6 +10,9 @@ public class Box extends Movable{
     public void deplacement(Direction d){
         super.deplacement(d);
     }
+    //pas élégant je vais demander pour trouver une solution plus élégante
+
+
 
     public boolean isPossible(State tab,Direction d){
         int x1=x;

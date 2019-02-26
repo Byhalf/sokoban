@@ -6,8 +6,6 @@ public class State {
     private Grid grid;
     private Player player;
     private ArrayList<Box> boxes = new ArrayList<Box>();
-
-
     public Grid getGrid() {
         return grid;
     }

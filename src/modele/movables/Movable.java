@@ -7,6 +7,20 @@ public abstract class Movable{
     private int y;
 
 
+    public int getNum_coup() {
+        return num_coup;
+    }
+
+    private int num_coup = 0;
+
+    public void increment_num_coup(){
+        num_coup++;
+    }
+    public void decrement_num_coup(){
+        num_coup--;
+    }
+
+
     public Movable(int x,int y){
         this.x=x;
         this.y=y;
@@ -30,6 +44,7 @@ public abstract class Movable{
         }
 
     }
+
 
     public boolean isPossible(State tab,Direction d){
         int x1=this.x;

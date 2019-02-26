@@ -9,8 +9,17 @@ public class Player extends Movable{
 
     public void deplacement(Direction d){
         super.deplacement(d);
+        super.increment_num_coup();
     }
-
+    /*
+    public void deplacement(Direction d, Boolean f){
+        if(!f){
+            super.deplacement(d);
+        }else{
+            deplacement(d);
+        }
+    }
+*/
     public Player(int x,int y){
         super(x,y);
     }
