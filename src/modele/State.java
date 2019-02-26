@@ -8,6 +8,10 @@ public class State {
     ArrayList<Box> boxes = new ArrayList<Box>();
 
 
+    public Grid getGrid() {
+        return grid;
+    }
+
     public State(Grid grid, ArrayList<Box> boxes, Player player){
         this.grid = grid;
         this.boxes= boxes;
@@ -22,7 +26,7 @@ public class State {
     public boolean isFinished(){
         boxes = this.boxes;
         for (Box box:boxes){
-            if(grid[box.x][box.y] != Case.GOAL){
+            if(this.grid.getCase(box.x,box.y) != Case.GOAL){
                 return false;
             }
         }

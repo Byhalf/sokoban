@@ -34,8 +34,8 @@ public abstract class Movable{
     }
 
     public boolean isPossible(State tab,int x,int y){
-        Case[][] grid = tab.getGrid();
-        if (grid[x][y]==Case.WALL){
+        Grid grid = tab.getGrid();
+        if (grid.getCase(x,y)==Case.WALL){
             return false;
         }
         return true;

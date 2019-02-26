@@ -8,4 +8,7 @@ public class Grid {
         //peut être changer ça je trouve ça bizare
         this.grid = grid;
     }
+    public Case getCase(int x, int y){
+        return grid[x][y];
+    }
 }

@@ -38,16 +38,16 @@ public class LevelMaker {
 
 
 
-    public void setLevel (int lvlNbr){
+    public State setLevel (int lvlNbr){
         String lvl = getLevel();
         int x = getDimX();
         int y = getDimY();
-        int counter = 0;
 
+        // problème, le \n compte comme un caractère? à tester brouillon a simplifier
         for (int i = 0; i < y; i++) {
             for (int j = 0; j < x; j++) {
 
-                switch (lvl.charAt(counter)) {
+                switch (lvl.charAt(i+j*i)) {
                     case ' ':
                         grid[i][j] = Case.FLOOR;
                         break;
@@ -59,13 +59,16 @@ public class LevelMaker {
                         break;
                     case '@':
                         player = new Player(i,j);
+                        break;
                     case '$':
                         boxes.add(new Box(i,j));
+                        break;
 
                 }
             }
-            counter++;
+
         }
+        return new State(new Grid(grid),boxes,player);
 
     }
 
