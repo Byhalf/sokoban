@@ -1,11 +1,19 @@
 package modele.movables;
 
 import modele.*;
+import utulities.AbstractModeleEcouteur;
 
-public abstract class Movable{
+public abstract class Movable extends AbstractModeleEcouteur {
     private int x;
     private int y;
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 
     public int getNum_coup() {
         return num_coup;
@@ -42,6 +50,7 @@ public abstract class Movable{
                 this.y+=1;
                 break;
         }
+        fireChangement();
 
     }
 

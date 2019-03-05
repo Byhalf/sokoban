@@ -1,7 +1,9 @@
 package modele;
 import java.util.ArrayList;
 import modele.movables.*;
-public class State {
+import utulities.AbstractModeleEcouteur;
+
+public class State extends AbstractModeleEcouteur {
 
     private Grid grid;
     private Player player;
@@ -24,10 +26,11 @@ public class State {
         this.player = player;
     }
 
+    public void deplacement(Direction d){
+        player.deplacement(d);
 
 
-
-
+    }
 
     public boolean isFinished(){
         boxes = this.boxes;

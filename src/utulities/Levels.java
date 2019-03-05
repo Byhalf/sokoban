@@ -3,7 +3,7 @@ package utulities;
 public class Levels {
     private String[] levelsList;
 
-    public void Levels(String levels){
+    public Levels(String levels){
         this.levelsList = levels.split(";.*");
     }
 
