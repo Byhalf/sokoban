@@ -28,10 +28,9 @@ public class State extends AbstractModeleEcouteur {
 
     public void deplacement(Direction d){
         player.deplacement(d);
-
-
+        fireChangement();
     }
-
+//rajouter un firechange pour isFinished.
     public boolean isFinished(){
         boxes = this.boxes;
         for (Box box:boxes){

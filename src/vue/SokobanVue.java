@@ -35,13 +35,13 @@ public class SokobanVue extends JPanel implements EcouteurModele {
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
-        innnit_level(g);
-        paint_movable(g,this.source);
+        paint_level(g);
+        //paint_movable(g,this.source);
 
     }
 
-    public void innnit_level(Graphics g){
-
+    public void paint_level(Graphics g){
+        //La grille
         for(int i=0;i<dimX;i++){
             for(int j=0;j<dimY;j++){
                 if(grid.getCase(i,j)== Case.FLOOR){
@@ -51,11 +51,30 @@ public class SokobanVue extends JPanel implements EcouteurModele {
                 }else if(grid.getCase(i,j)==Case.GOAL){
                     g.setColor(Color.GREEN);
                 }
+
                 g.fillRect(i*LARGEUR_CASE,j*HAUTEUR_CASE,LARGEUR_CASE,HAUTEUR_CASE);
             }
         }
+        //Le joueur
+        int x = state.getPlayer().getX()*LARGEUR_CASE;
+        int y = state.getPlayer().getY()*HAUTEUR_CASE;
+        g.setColor(Color.RED);
+        g.fillRect(x,y,LARGEUR_CASE,HAUTEUR_CASE);
+
+        //les caisses
+        for(Box box:state.getBoxes()){
+            x = box.getX()*LARGEUR_CASE;
+            y = box.getY()*HAUTEUR_CASE;
+            g.setColor(Color.BLUE);
+            g.fillRect(x,y,LARGEUR_CASE,HAUTEUR_CASE);
+
+        }
+
+
     }
-    //les 2 méthode qui suivent dans le tp il prennait un truc qui renvoyé un state la on ne fait que le modifié
+    //Idealement on repeindra que les objets movable, peut être en créant des jpannel juste pour eux?
+    /*
+
     public void paint_movable(Graphics g,Movable movable){
 
         int x = movable.getX()*LARGEUR_CASE;
@@ -67,12 +86,12 @@ public class SokobanVue extends JPanel implements EcouteurModele {
         g.fillRect(x,y,LARGEUR_CASE,HAUTEUR_CASE);
 
     }
-
+*/
 
 
     @Override
     public void modeleMisAJour(Object source){
-        this.source = (Movable) source;
+        //this.source = (Movable) source;
         this.repaint();
         this.revalidate();
     }

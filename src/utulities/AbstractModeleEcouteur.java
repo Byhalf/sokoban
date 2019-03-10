@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 abstract public class AbstractModeleEcouteur implements ModeleEcouteur {
 
-    ArrayList<EcouteurModele> ecouteurModeles = new ArrayList<>();
+    private ArrayList<EcouteurModele> ecouteurModeles = new ArrayList<>();
 
     @Override
     public void ajoutEcouteur(EcouteurModele e) {
@@ -17,8 +17,7 @@ abstract public class AbstractModeleEcouteur implements ModeleEcouteur {
     }
 
     protected void fireChangement() {
-        for (EcouteurModele e :
-                ecouteurModeles) {
+        for (EcouteurModele e : ecouteurModeles) {
             e.modeleMisAJour(this);
         }
     }

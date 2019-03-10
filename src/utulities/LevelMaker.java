@@ -7,74 +7,14 @@ import modele.movables.Box;
 import modele.movables.Player;
 
 public class LevelMaker {
-    private int dimX = 0;
-    private int dimY = 0;
-    private String level;
-    private Case[][] grid;
-    private Player player;
-    private ArrayList<Box> boxes = new ArrayList<Box>();
 
 
-
-    public int getDimX() {
-        return dimX;
-    }
-
-    public int getDimY() {
-        return dimY;
-    }
-
-
-    public String getLevel(){
-        return level;
-    }
-
-    public LevelMaker(Levels lvl,int lvlNbr){
-        this.level = lvl.getLevelAsString(lvlNbr);
-        setDim(getLevel());
+    public static String getLevelAsString(String lvls, int lvlNbr) {
+        return lvls.split(";.*\n")[lvlNbr - 1];
 
     }
 
-
-
-
-    public State setLevel (int lvlNbr){
-        String lvl = getLevel();
-        int x = getDimX();
-        int y = getDimY();
-
-        // problème, le \n compte comme un caractère? à tester brouillon a simplifier
-        for (int i = 0; i < y; i++) {
-            for (int j = 0; j < x; j++) {
-
-                switch (lvl.charAt(i+j*i)) {
-                    case ' ':
-                        grid[i][j] = Case.FLOOR;
-                        break;
-                    case '#':
-                        grid[i][j] = Case.WALL;
-                        break;
-                    case '.':
-                        grid[i][j] = Case.GOAL;
-                        break;
-                    case '@':
-                        player = new Player(i,j);
-                        break;
-                    case '$':
-                        boxes.add(new Box(i,j));
-                        break;
-
-                }
-            }
-
-        }
-        return new State(new Grid(grid,getDimX(),getDimY()),boxes,player);
-
-    }
-
-
-
-    public void setDim(String lvl) {
+    public static int[] getDim(String lvl) {
         int height = 0;
         int width = 0;
         int counter = 0;
@@ -88,8 +28,52 @@ public class LevelMaker {
                 height += 1;
             }
         }
-        this.dimX= width;
-        this.dimY= height;
+        int[] res = new int[2];
+        res[0]=width;
+        res[1]=height;
+        return res;
     }
+    public static State setLevel(String lvls,int lvlNbr){
+        String lvl = getLevelAsString(lvls, lvlNbr);
+        Player player = new Player(0, 0);
+        Case[][] grid;
+        ArrayList<Box> boxes = new ArrayList<Box>();
+        int[] dim = getDim(lvl);
+        int x = dim[0];
+        int y = dim[1];
+        //On initialise la grille du jeu avec le sol.
+        grid = new Case[x][y];
+        for(int i =0;i<x;i++){
+            for(int j=0;j<y;j++){
+                grid[i][j]= Case.FLOOR;
+            }
+        }
+        int i = 0;
+        int j = 0;
+        for (char s : lvl.toCharArray()) {
+            switch (s) {
+                case ' ':
+                    grid[i][j] = Case.FLOOR;
+                    break;
+                case '#':
+                    grid[i][j] = Case.WALL;
+                    break;
+                case '.':
+                    grid[i][j] = Case.GOAL;
+                    break;
+                case '@':
+                    player = new Player(i, j);
+                    break;
+                case '$':
+                    boxes.add(new Box(i, j));
+                    break;
 
+            }
+            i++;
+            if(s=='\n'){
+                i=0;
+                j++;
+            }
+        }return new State(new Grid(grid, x, y),boxes,player);
+    }
 }

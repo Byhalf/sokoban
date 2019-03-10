@@ -28,7 +28,10 @@ public abstract class Movable extends AbstractModeleEcouteur {
         num_coup--;
     }
 
-
+    @Override
+    public String toString(){
+        return "x"+ getX() + "y" +getY();
+    }
     public Movable(int x,int y){
         this.x=x;
         this.y=y;
