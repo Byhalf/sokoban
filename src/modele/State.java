@@ -7,7 +7,7 @@ public class State extends AbstractModeleEcouteur {
 
     private Grid grid;
     private Player player;
-    private ArrayList<Box> boxes = new ArrayList<Box>();
+    private ArrayList<Box> boxes;
     public Grid getGrid() {
         return grid;
     }
@@ -27,7 +27,7 @@ public class State extends AbstractModeleEcouteur {
     }
 
     public void deplacement(Direction d){
-        player.deplacement(d);
+        player.deplacement(this,d);
         fireChangement();
     }
 //rajouter un firechange pour isFinished.

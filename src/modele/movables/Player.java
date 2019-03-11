@@ -3,65 +3,36 @@ package modele.movables;
 import modele.*;
 
 public class Player extends Movable{
-    private int x;
-    private int y;
 
-
-    public void deplacement(Direction d){
-        super.deplacement(d);
-        super.increment_num_coup();
-    }
-    /*
-    public void deplacement(Direction d, Boolean f){
-        if(!f){
-            super.deplacement(d);
-        }else{
-            deplacement(d);
+    public void deplacement(State s,Direction d){
+        if(isPossible(s,d)){
+            super.deplacement(s,d);
+            super.increment_num_coup();
         }
     }
-*/
+
+
     public Player(int x,int y){
         super(x,y);
     }
 
     @Override
     public boolean isPossible(State tab,Direction d) {
-        int x1 = x;
-        int y1 = y;
+        int[] coord = nextMove(getX(),getY(),d);
+        int x1=coord[0];
+        int y1=coord[1];
         if (super.isPossible(tab, d)) {
-            for (Box m : tab.getBoxes()) {
-                if (m.getX() == x1 && m.getY() == y1) {
-                    m.isPossible(tab, d);
+            for (Box b : tab.getBoxes()) {
+                if (b.getX() == x1 && b.getY() == y1) {
+                    if (!b.isPossible(tab,d))
+                        return false;
+                    else
+                        b.deplacement(tab,d );
+                        return true;
                 }
-            }
-
-        }
-        return true;
+            }return true;
+        }else
+            return false;
     }
-//    public boolean isPossible(State tab,int x,int y,char d){
-//        if (!super.isPossible(tab,x,y)) {
-//            for (Box m:tab.movables) {
-//                if (m.x == this.testx && m.y == this.testy) {
-//                    m.deplacement(d);
-//                    if(m.isPossible(tab,x,y)){
-//                        this.x=this.testx;
-//                        this.y=this.testy;
-//                        return false;
-//                    }
-//                }
-//            }
-//        }
-//        this.testx=this.x;
-//        this.testy=this.y;
-//        return false;
-            //if( m.mur(tab,x,y)==true){
-             //   if(m.x,m.y)
-               // return m.x,m.y,m.x,m.y;
-          //  }
-            //else{
-
-          //  }
-        //}
-
 
 }

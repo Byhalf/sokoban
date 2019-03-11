@@ -3,33 +3,32 @@ package modele.movables;
 import modele.*;
 
 public class Box extends Movable{
-    private int x;
-    private int y;
-
-
-    public void deplacement(Direction d){
-        super.deplacement(d);
+/*
+    @Override
+    public void deplacement(State s ,Direction d){
+        if(isPossible(s,d)){
+            super.deplacement(s,d);
+        }
     }
-    //pas élégant je vais demander pour trouver une solution plus élégante
 
-
+*/
 
     public boolean isPossible(State tab,Direction d){
-        int x1=x;
-        int y1=y;
-        if(super.isPossible(tab,d)){
-            for (Box m:tab.getBoxes()) {
-                if (m.x == x1 && m.y == y1) {
+        int x = getX();
+        int y = getY();
+        int[] coord = nextMove(x,y,d);
+        int x1=coord[0];
+        int y1=coord[1];
+        if (super.isPossible(tab, d)){
+            for (Box b:tab.getBoxes()) {
+                if (b.getX() == x1 && b.getY() == y1) {
                     return false;
                 }
             }
+            return true;
+        }else
+            return false;
 
-        }
-//        if (super.isPossible(grid,x,y)){
-//            return false;
-//        }
-//        return true;
-        return true;
     }
 
     public Box(int x,int y){

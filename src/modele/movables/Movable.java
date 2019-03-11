@@ -38,29 +38,29 @@ public abstract class Movable extends AbstractModeleEcouteur {
 
     }
 
-    public void deplacement(Direction d){
-        switch(d){
-            case L:
-                this.x-=1;
-                break;
-            case R:
-                this.x+=1;
-                break;
-            case U:
-                this.y-=1;
-                break;
-            case D:
-                this.y+=1;
-                break;
+    public void deplacement(State s,Direction d){
+        if(this.isPossible(s,d)){
+            switch(d){
+                case L:
+                    this.x-=1;
+                    break;
+                case R:
+                    this.x+=1;
+                    break;
+                case U:
+                    this.y-=1;
+                    break;
+                case D:
+                    this.y+=1;
+                    break;
+            }
+            fireChangement();
         }
-        fireChangement();
 
     }
-
-
-    public boolean isPossible(State tab,Direction d){
-        int x1=this.x;
-        int y1=this.y;
+    public int[] nextMove(int x, int y,Direction d){
+        int x1= x;
+        int y1= y;
         switch(d){
             case L:
                 x1-=1;
@@ -75,8 +75,23 @@ public abstract class Movable extends AbstractModeleEcouteur {
                 y1+=1;
                 break;
         }
+        int[] coord;
+        coord = new int[2];
+        coord[0]=x1;
+        coord[1]=y1;
+        return coord;
+    }
+
+    public boolean isPossible(State tab,Direction d){
+        int[] coord = nextMove(x,y,d);
+        int x1=coord[0];
+        int y1=coord[1];
+        if(x1>=tab.getGrid().getDimX() || y1>=tab.getGrid().getDimY()
+        ||x1<0||y1<0)
+            return false;
+
         Grid grid = tab.getGrid();
-        return!(grid.getCase(x1,y1)==Case.WALL);
+        return (grid.getCase(x1,y1)!=Case.WALL);
 
 
     }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class History {
     private ArrayList<Move> history;
-
+/*
     public void addMove(Move m){
         history.add(m);
     }
@@ -38,5 +38,5 @@ public class History {
             }
         }history.remove(history.size()-1);
 
-    }
+    }*/
 }
