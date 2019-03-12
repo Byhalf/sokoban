@@ -26,11 +26,12 @@ public class State extends AbstractModeleEcouteur {
         this.player = player;
     }
 
-    public void deplacement(Direction d){
-        player.deplacement(this,d);
-        fireChangement();
+    public State deplacement(Direction d){
+        State newState = getCopy(this);
+        newState.getPlayer().deplacement(newState,d);
+        return newState;
     }
-//rajouter un firechange pour isFinished.
+
     public boolean isFinished(){
         boxes = this.boxes;
         for (Box box:boxes){
@@ -39,6 +40,15 @@ public class State extends AbstractModeleEcouteur {
             }
         }
         return true;
+    }
+    public State getCopy(State state){
+        ArrayList<Box> newBoxes = new ArrayList<Box>();
+        for (Box box: boxes){
+            Box newBox = new Box(box.getX(),box.getY());
+            newBoxes.add(newBox);
+        }
+        Player newPlayer = new Player(player.getX(),player.getY());
+        return new State(getGrid(),newBoxes,newPlayer);
     }
 
 

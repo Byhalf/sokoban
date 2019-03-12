@@ -1,6 +1,7 @@
 package vue;
 import modele.Case;
 import modele.Grid;
+import modele.Modele;
 import modele.State;
 import modele.movables.Box;
 import modele.movables.Movable;
@@ -15,19 +16,19 @@ import java.util.ArrayList;
 public class SokobanVue extends JPanel implements EcouteurModele {
     public static final int LARGEUR_CASE = 30;
     public static final int HAUTEUR_CASE = 30;
-    private State state;
+
+    private Modele modele;
     private Grid grid;
     private int dimX;
     private int dimY;
-    private Movable source;
 
-    SokobanVue(State state){
-        this.state = state;
-        this.grid = state.getGrid();
-        this.dimX = grid.getDimX();
-        this.dimY = grid.getDimY();
-        state.ajoutEcouteur(this);
-
+    SokobanVue(Modele modele){
+        modele.ajoutEcouteur(this);
+        this.modele = modele;
+        State state = modele.getState();
+        grid = state.getGrid();
+        dimX = grid.getDimX();
+        dimY = grid.getDimY();
         setPreferredSize(new Dimension(LARGEUR_CASE*dimX,HAUTEUR_CASE*dimY));
     }
 
@@ -42,6 +43,9 @@ public class SokobanVue extends JPanel implements EcouteurModele {
 
     public void paint_level(Graphics g){
         //La grille
+
+
+        State state = modele.getState();
         for(int i=0;i<dimX;i++){
             for(int j=0;j<dimY;j++){
                 if(grid.getCase(i,j)== Case.FLOOR){
@@ -92,6 +96,7 @@ public class SokobanVue extends JPanel implements EcouteurModele {
     @Override
     public void modeleMisAJour(Object source){
         //this.source = (Movable) source;
+
         this.repaint();
         this.revalidate();
     }
