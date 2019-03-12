@@ -38,8 +38,11 @@ public class State extends AbstractModeleEcouteur {
                 return false;
             }
         }
+
         return true;
     }
+
+
 
 
 }
