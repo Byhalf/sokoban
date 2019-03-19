@@ -1,6 +1,7 @@
 package vue;
 import modele.Case;
 import modele.Grid;
+import modele.Modele;
 import modele.State;
 import modele.movables.Box;
 import modele.movables.Movable;
@@ -8,31 +9,26 @@ import modele.movables.Player;
 import utulities.EcouteurModele;
 
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class SokobanVue extends JPanel implements EcouteurModele {
     public static final int LARGEUR_CASE = 30;
     public static final int HAUTEUR_CASE = 30;
-    private State state;
+
+    private Modele modele;
     private Grid grid;
     private int dimX;
     private int dimY;
-    private Movable source;
 
-
-    SokobanVue(State state){
-        this.state = state;
-        this.grid = state.getGrid();
-        this.dimX = grid.getDimX();
-        this.dimY = grid.getDimY();
-        state.ajoutEcouteur(this);
-
+    SokobanVue(Modele modele){
+        modele.ajoutEcouteur(this);
+        this.modele = modele;
+        State state = modele.getState();
+        grid = state.getGrid();
+        dimX = grid.getDimX();
+        dimY = grid.getDimY();
         setPreferredSize(new Dimension(LARGEUR_CASE*dimX,HAUTEUR_CASE*dimY));
     }
 
@@ -47,6 +43,9 @@ public class SokobanVue extends JPanel implements EcouteurModele {
 
     public void paint_level(Graphics g){
         //La grille
+
+
+        State state = modele.getState();
         for(int i=0;i<dimX;i++){
             for(int j=0;j<dimY;j++){
                 if(grid.getCase(i,j)== Case.FLOOR){
@@ -75,17 +74,6 @@ public class SokobanVue extends JPanel implements EcouteurModele {
 
         }
 
-        if(state.isFinished()){
-            BufferedImage image = null;
-            try {
-                image = ImageIO.read(new File("src/docannexes/victoire.png"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            g.drawImage(image,0,0,LARGEUR_CASE*dimX,HAUTEUR_CASE*dimY,null);
-
-        }
-
 
     }
     //Idealement on repeindra que les objets movable, peut être en créant des jpannel juste pour eux?
@@ -108,11 +96,9 @@ public class SokobanVue extends JPanel implements EcouteurModele {
     @Override
     public void modeleMisAJour(Object source){
         //this.source = (Movable) source;
-        System.out.println(source);
+
         this.repaint();
         this.revalidate();
     }
-
-
 
 }
