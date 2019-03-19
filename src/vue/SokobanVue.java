@@ -8,12 +8,8 @@ import modele.movables.Player;
 import utulities.EcouteurModele;
 
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class SokobanVue extends JPanel implements EcouteurModele {
@@ -24,7 +20,6 @@ public class SokobanVue extends JPanel implements EcouteurModele {
     private int dimX;
     private int dimY;
     private Movable source;
-
 
     SokobanVue(State state){
         this.state = state;
@@ -75,17 +70,6 @@ public class SokobanVue extends JPanel implements EcouteurModele {
 
         }
 
-        if(state.isFinished()){
-            BufferedImage image = null;
-            try {
-                image = ImageIO.read(new File("src/docannexes/victoire.png"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            g.drawImage(image,0,0,LARGEUR_CASE*dimX,HAUTEUR_CASE*dimY,null);
-
-        }
-
 
     }
     //Idealement on repeindra que les objets movable, peut être en créant des jpannel juste pour eux?
@@ -108,11 +92,8 @@ public class SokobanVue extends JPanel implements EcouteurModele {
     @Override
     public void modeleMisAJour(Object source){
         //this.source = (Movable) source;
-        System.out.println(source);
         this.repaint();
         this.revalidate();
     }
-
-
 
 }

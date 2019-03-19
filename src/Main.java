@@ -11,7 +11,7 @@ public class Main {
         String levels = FileParser.parse(filePath1);
 
         //LevelMaker est composé de méthode static
-        State state = LevelMaker.setLevel(levels,3);
+        State state = LevelMaker.setLevel(levels,2);
 
         Gui sokoGui = new Gui(state);
 

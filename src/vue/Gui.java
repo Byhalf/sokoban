@@ -1,8 +1,9 @@
 package vue;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import modele.State;
 import modele.movables.Direction;
-
+import modele.Modele;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.BorderLayout;
@@ -12,14 +13,15 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Gui extends JFrame implements KeyListener {
-    State state;
-    public Gui(State state){
+    Modele modele;
+    SokobanVue sokovue;
+    public Gui(Modele modele){
         super("sokoban");
-        this.state = state;
+        this.modele = modele;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.addKeyListener(this);
         setLayout(new BorderLayout());
-        SokobanVue sokovue = new SokobanVue(state);
+        sokovue = new SokobanVue(modele);
         add(sokovue,BorderLayout.CENTER);
         pack();
         setVisible(true);
@@ -36,13 +38,13 @@ public class Gui extends JFrame implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e){
         if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-            state.deplacement(Direction.R);
+            modele.deplacement(Direction.R);
         }else if (e.getKeyCode() == KeyEvent.VK_LEFT){
-            state.deplacement(Direction.L);
+            modele.deplacement(Direction.L);
         }else if (e.getKeyCode() == KeyEvent.VK_UP){
-            state.deplacement(Direction.U);
+            modele.deplacement(Direction.U);
         }else if (e.getKeyCode() == KeyEvent.VK_DOWN){
-            state.deplacement(Direction.D);
+            modele.deplacement(Direction.D);
         }
     }
 }

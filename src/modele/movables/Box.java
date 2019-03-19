@@ -3,15 +3,6 @@ package modele.movables;
 import modele.*;
 
 public class Box extends Movable{
-/*
-    @Override
-    public void deplacement(State s ,Direction d){
-        if(isPossible(s,d)){
-            super.deplacement(s,d);
-        }
-    }
-
-*/
 
     public boolean isPossible(State tab,Direction d){
         int x = getX();

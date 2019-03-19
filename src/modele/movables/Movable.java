@@ -24,9 +24,6 @@ public abstract class Movable extends AbstractModeleEcouteur {
     public void increment_num_coup(){
         num_coup++;
     }
-    public void decrement_num_coup(){
-        num_coup--;
-    }
 
     @Override
     public String toString(){
