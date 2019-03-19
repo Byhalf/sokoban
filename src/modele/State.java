@@ -1,62 +1,55 @@
 package modele;
-public class State {
-    String lvl;
+import java.util.ArrayList;
+import modele.movables.*;
+import utulities.AbstractModeleEcouteur;
 
-    public Case[][] getGrid() {
+public class State extends AbstractModeleEcouteur {
+
+    private Grid grid;
+    private Player player;
+    private ArrayList<Box> boxes;
+    public Grid getGrid() {
         return grid;
     }
 
-    Case[][] grid;
-
-
-    public State(String lvl){
-        this.lvl = lvl;
-        this.grid = this.makeGameGrid(lvl);
-    }
-    public int[] getDim(String lvl) {
-        int dim[] = new int[2];
-        int height = 0;
-        int width = 0;
-        int counter = 0;
-        for (char s : lvl.toCharArray()) {
-            if (s != '\n') {
-                counter += 1;
-            } else {
-                if (counter > width)
-                    width = counter;
-                counter = 0;
-                height += 1;
-            }
-        }
-        dim[0]= width;
-        dim[1]= height;
-        return dim;
+    public Player getPlayer() {
+        return player;
     }
 
-        public Case[][] makeGameGrid (String lvl){
-            int[] dim = this.getDim(lvl);
-            int x = dim[0];
-            int y = dim[1];
-            Case grid[][] = new Case[x][y];
-            for (int i = 0; i < y; i++) {
-                for (int j = 0; j < x; j++) {
-                    switch (lvl.charAt(j)) {
-                        case ' ':
-                            grid[i][j] = Case.FLOOR;
-                            break;
-                        case '#':
-                            grid[i][j] = Case.WALL;
-                            break;
-                        case '.':
-                            grid[i][j] = Case.GOAL;
-                            break;
+    public ArrayList<Box> getBoxes() {
+        return boxes;
+    }
 
-                    }
+    public State(Grid grid, ArrayList<Box> boxes, Player player){
+        this.grid = grid;
+        this.boxes= boxes;
+        this.player = player;
+    }
 
-                }
+    public State deplacement(Direction d){
+        State newState = getCopy(this);
+        newState.getPlayer().deplacement(newState,d);
+        return newState;
+    }
+
+    public boolean isFinished(){
+        boxes = this.boxes;
+        for (Box box:boxes){
+            if(this.grid.getCase(box.getX(),box.getY()) != Case.GOAL){
+                return false;
             }
-            return grid;
         }
+        return true;
+    }
+    public State getCopy(State state){
+        ArrayList<Box> newBoxes = new ArrayList<Box>();
+        for (Box box: boxes){
+            Box newBox = new Box(box.getX(),box.getY());
+            newBoxes.add(newBox);
+        }
+        Player newPlayer = new Player(player.getX(),player.getY());
+        return new State(getGrid(),newBoxes,newPlayer);
+    }
 
 
-        }
+}
