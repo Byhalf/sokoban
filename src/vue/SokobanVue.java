@@ -8,9 +8,12 @@ import modele.movables.Movable;
 import modele.movables.Player;
 import utulities.EcouteurModele;
 
-
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class SokobanVue extends JPanel implements EcouteurModele {
@@ -72,6 +75,16 @@ public class SokobanVue extends JPanel implements EcouteurModele {
             g.setColor(Color.BLUE);
             g.fillRect(x,y,LARGEUR_CASE,HAUTEUR_CASE);
 
+        }
+
+        if(state.isFinished()){
+            BufferedImage image = null;
+            try {
+                image = ImageIO.read(new File("src/docannexes/victoire.png"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            g.drawImage(image,0,0,LARGEUR_CASE*dimX,HAUTEUR_CASE*dimY,null);
         }
 
 
