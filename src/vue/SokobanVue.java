@@ -26,10 +26,41 @@ public class SokobanVue extends JPanel implements EcouteurModele {
     private int dimY;
 
     private static BufferedImage imageVictoire;
+    private static BufferedImage imageSol;
+    private static BufferedImage imageMur;
+    private static BufferedImage imagePersonnage;
+    private static BufferedImage imageCaisse;
+    private static BufferedImage imageCible;
+
 
     public static void initializeResource() {
         try {
             imageVictoire = ImageIO.read(new File("src/docannexes/victoire.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            imageSol = ImageIO.read(new File("src/docannexes/sol.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            imageMur = ImageIO.read(new File("src/docannexes/mur.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            imagePersonnage = ImageIO.read(new File("src/docannexes/licorne.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            imageCaisse = ImageIO.read(new File("src/docannexes/caisse.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            imageCible = ImageIO.read(new File("src/docannexes/cible.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -61,15 +92,13 @@ public class SokobanVue extends JPanel implements EcouteurModele {
         //Le joueur
         int x = state.getPlayer().getX()*LARGEUR_CASE;
         int y = state.getPlayer().getY()*HAUTEUR_CASE;
-        g.setColor(Color.RED);
-        g.fillRect(x,y,LARGEUR_CASE,HAUTEUR_CASE);
+        g.drawImage(imagePersonnage,x,y,LARGEUR_CASE,HAUTEUR_CASE,null);
 
         //les caisses
         for(Box box:state.getBoxes()){
             x = box.getX()*LARGEUR_CASE;
             y = box.getY()*HAUTEUR_CASE;
-            g.setColor(Color.BLUE);
-            g.fillRect(x,y,LARGEUR_CASE,HAUTEUR_CASE);
+            g.drawImage(imageCaisse,x,y,LARGEUR_CASE,HAUTEUR_CASE,null);
 
         }
 
@@ -86,15 +115,14 @@ public class SokobanVue extends JPanel implements EcouteurModele {
         for(int i=0;i<dimX;i++){
             for(int j=0;j<dimY;j++){
                 if(grid.getCase(i,j)== Case.FLOOR){
-                    g.setColor(Color.MAGENTA);
+                    g.drawImage(imageSol,i*LARGEUR_CASE,j*LARGEUR_CASE,LARGEUR_CASE,HAUTEUR_CASE,null);
                 }else if(grid.getCase(i,j)==Case.WALL){
-                    g.drawImage(imageVictoire,i*LARGEUR_CASE,j*LARGEUR_CASE,LARGEUR_CASE,HAUTEUR_CASE,null);
+                    g.drawImage(imageMur,i*LARGEUR_CASE,j*LARGEUR_CASE,LARGEUR_CASE,HAUTEUR_CASE,null);
                 }
-
                 else if(grid.getCase(i,j)==Case.GOAL){
-                    g.setColor(Color.BLACK);
+                    g.drawImage(imageCible,i*LARGEUR_CASE,j*LARGEUR_CASE,LARGEUR_CASE,HAUTEUR_CASE,null);
 
-                g.fillRect(i*LARGEUR_CASE,j*HAUTEUR_CASE,LARGEUR_CASE,HAUTEUR_CASE);
+                //g.fillRect(i*LARGEUR_CASE,j*HAUTEUR_CASE,LARGEUR_CASE,HAUTEUR_CASE);
             }
         }
 
