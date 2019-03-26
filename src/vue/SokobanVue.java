@@ -25,6 +25,16 @@ public class SokobanVue extends JPanel implements EcouteurModele {
     private int dimX;
     private int dimY;
 
+    private static BufferedImage imageVictoire;
+
+    public static void initializeResource() {
+        try {
+            imageVictoire = ImageIO.read(new File("src/docannexes/victoire.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     SokobanVue(Modele modele){
         modele.ajoutEcouteur(this);
         this.modele = modele;
@@ -33,35 +43,21 @@ public class SokobanVue extends JPanel implements EcouteurModele {
         dimX = grid.getDimX();
         dimY = grid.getDimY();
         setPreferredSize(new Dimension(LARGEUR_CASE*dimX,HAUTEUR_CASE*dimY));
+
     }
 
 
     @Override
     protected void paintComponent(Graphics g){
+
         super.paintComponent(g);
         paint_level(g);
+        paintReste(g);
         //paint_movable(g,this.source);
 
     }
-
-    public void paint_level(Graphics g){
-        //La grille
-
-
-        State state = modele.getState();
-        for(int i=0;i<dimX;i++){
-            for(int j=0;j<dimY;j++){
-                if(grid.getCase(i,j)== Case.FLOOR){
-                    g.setColor(Color.LIGHT_GRAY);
-                }else if(grid.getCase(i,j)==Case.WALL){
-                    g.setColor(Color.BLACK);
-                }else if(grid.getCase(i,j)==Case.GOAL){
-                    g.setColor(Color.GREEN);
-                }
-
-                g.fillRect(i*LARGEUR_CASE,j*HAUTEUR_CASE,LARGEUR_CASE,HAUTEUR_CASE);
-            }
-        }
+    public void paintReste(Graphics g){
+        State state=modele.getState();
         //Le joueur
         int x = state.getPlayer().getX()*LARGEUR_CASE;
         int y = state.getPlayer().getY()*HAUTEUR_CASE;
@@ -78,16 +74,33 @@ public class SokobanVue extends JPanel implements EcouteurModele {
         }
 
         if(state.isFinished()){
-            BufferedImage image = null;
-            try {
-                image = ImageIO.read(new File("src/docannexes/victoire.png"));
-            } catch (IOException e) {
-                e.printStackTrace();
+            g.drawImage(imageVictoire,0,0,LARGEUR_CASE*dimX,HAUTEUR_CASE*dimY,null);
+        }
+        //this.repaint();
+    }
+    private void paint_level(Graphics g){
+        //La grille
+
+
+        State state = modele.getState();
+        for(int i=0;i<dimX;i++){
+            for(int j=0;j<dimY;j++){
+                if(grid.getCase(i,j)== Case.FLOOR){
+                    g.setColor(Color.MAGENTA);
+                }else if(grid.getCase(i,j)==Case.WALL){
+                    g.drawImage(imageVictoire,i*LARGEUR_CASE,j*LARGEUR_CASE,LARGEUR_CASE,HAUTEUR_CASE,null);
+                }
+
+                else if(grid.getCase(i,j)==Case.GOAL){
+                    g.setColor(Color.BLACK);
+
+                g.fillRect(i*LARGEUR_CASE,j*HAUTEUR_CASE,LARGEUR_CASE,HAUTEUR_CASE);
             }
-            g.drawImage(image,0,0,LARGEUR_CASE*dimX,HAUTEUR_CASE*dimY,null);
         }
 
 
+
+    }
     }
     //Idealement on repeindra que les objets movable, peut être en créant des jpannel juste pour eux?
     /*
