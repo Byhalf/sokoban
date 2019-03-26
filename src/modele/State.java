@@ -39,6 +39,7 @@ public class State extends AbstractModeleEcouteur {
                 return false;
             }
         }
+
         return true;
     }
     public State getCopy(State state){
@@ -50,6 +51,8 @@ public class State extends AbstractModeleEcouteur {
         Player newPlayer = new Player(player.getX(),player.getY());
         return new State(getGrid(),newBoxes,newPlayer);
     }
+
+
 
 
 }

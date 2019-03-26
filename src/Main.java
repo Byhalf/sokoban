@@ -12,6 +12,7 @@ public class Main {
 
         //LevelMaker est composé de méthode static
 
+        SokobanVue.initializeResource();
         State state = LevelMaker.setLevel(levels,2);
         Modele modele = new Modele(state);
         Gui sokoGui = new Gui(modele);
