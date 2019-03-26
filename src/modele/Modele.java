@@ -25,16 +25,22 @@ public class Modele extends AbstractModeleEcouteur {
         fireChangement();
     }
     public void annulDeplacement(){
-        state = history.removeLast();
-        fireChangement();
+	if (history.size()!=0){
+		state = history.removeLast();
+        	fireChangement();
+	}
     }
     public boolean isFinished(){
         return state.isFinished();
     }
 
-  /*
-    public void resetLevel(){}
 
+    public void resetLevel(){
+	state = history.removeFirst();
+        fireChangement();
+	history = new ArrayDeque();
+    }
+  /*
     public void nextLevel(){
     }
 
