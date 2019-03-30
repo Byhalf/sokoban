@@ -10,16 +10,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Gui extends JFrame implements KeyListener, ActionListener {
+public class GameVue extends JPanel implements KeyListener, ActionListener {
     Modele modele;
     JButton buttonCancel, buttonRestart;
     SokobanVue sokovue;
     JPanel pan;
 
-    public Gui(Modele modele) {
-        super("sokoban");
+    public GameVue(Modele modele) {
         this.modele = modele;
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.addKeyListener(this);
 
         setLayout(new BorderLayout());
@@ -40,11 +38,8 @@ public class Gui extends JFrame implements KeyListener, ActionListener {
         add(sokovue, BorderLayout.CENTER);
         add(pan, BorderLayout.EAST);
 
-        pack();
+        setFocusable(true);
         setVisible(true);
-        setFocusable(true); //pour le keylistener
-
-
     }
 
     @Override
