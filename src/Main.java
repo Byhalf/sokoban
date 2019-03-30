@@ -2,7 +2,6 @@ import modele.Modele;
 import modele.State;
 import utulities.FileParser;
 import utulities.LevelMaker;
-import vue.Gui;
 import vue.SokobanVue;
 
 public class Main {
