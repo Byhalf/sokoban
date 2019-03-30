@@ -1,5 +1,5 @@
 package modele;
 
 public enum Case {
-    FLOOR,WALL,GOAL
+    FLOOR, WALL, GOAL
 }

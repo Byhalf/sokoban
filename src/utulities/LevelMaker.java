@@ -1,10 +1,12 @@
 package utulities;
+
 import modele.Case;
-import java.awt.*;
-import java.util.ArrayList;
-import modele.*;
+import modele.Grid;
+import modele.State;
 import modele.movables.Box;
 import modele.movables.Player;
+
+import java.util.ArrayList;
 
 public class LevelMaker {
 
@@ -29,11 +31,12 @@ public class LevelMaker {
             }
         }
         int[] res = new int[2];
-        res[0]=width;
-        res[1]=height;
+        res[0] = width;
+        res[1] = height;
         return res;
     }
-    public static State setLevel(String lvls,int lvlNbr){
+
+    public static State setLevel(String lvls, int lvlNbr) {
         String lvl = getLevelAsString(lvls, lvlNbr);
         Player player = new Player(0, 0);
         Case[][] grid;
@@ -43,9 +46,9 @@ public class LevelMaker {
         int y = dim[1];
         //On initialise la grille du jeu avec le sol.
         grid = new Case[x][y];
-        for(int i =0;i<x;i++){
-            for(int j=0;j<y;j++){
-                grid[i][j]= Case.FLOOR;
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < y; j++) {
+                grid[i][j] = Case.FLOOR;
             }
         }
         int i = 0;
@@ -70,10 +73,11 @@ public class LevelMaker {
 
             }
             i++;
-            if(s=='\n'){
-                i=0;
+            if (s == '\n') {
+                i = 0;
                 j++;
             }
-        }return new State(new Grid(grid, x, y),boxes,player);
+        }
+        return new State(new Grid(grid, x, y), boxes, player);
     }
 }
