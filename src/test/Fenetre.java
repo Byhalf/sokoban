@@ -1,60 +1,58 @@
 package games;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.Color;
-import java.awt.Dimension;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.KeyEvent; 
 
-public class Fenetre extends JFrame implements KeyListener{
+public class Fenetre extends JFrame implements KeyListener {
 
-	private Panneau pan = new Panneau();
+    private Panneau pan = new Panneau();
 
-	public Fenetre(){
-		this.setTitle("Sokoban");
-		this.setSize(400, 400);
-		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setResizable(false);
-		this.setAlwaysOnTop(true);
-		//JPanel pan = new JPanel();
-		this.setBackground(Color.WHITE);
-		this.setContentPane(pan);
-		this.addKeyListener(this);
-		this.setVisible(true);
-		//go();
-	}
+    public Fenetre() {
+        this.setTitle("Sokoban");
+        this.setSize(400, 400);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
+        this.setAlwaysOnTop(true);
+        //JPanel pan = new JPanel();
+        this.setBackground(Color.WHITE);
+        this.setContentPane(pan);
+        this.addKeyListener(this);
+        this.setVisible(true);
+        //go();
+    }
 
-	public void keyPressed(KeyEvent key) {
-		
-		int codeDeLaTouche = key.getKeyCode();  
-         
-        	switch (codeDeLaTouche){
-		 	case KeyEvent.VK_UP :
-				pan.up();
-				this.repaint();
-				break;
-			case KeyEvent.VK_DOWN :
-				pan.down();
-				this.repaint();
-				break;
-			case KeyEvent.VK_RIGHT :
-				pan.right();
-				this.repaint();
-				break;
-			case KeyEvent.VK_LEFT :
-				pan.left();
-				this.repaint();
-				break;
-		}
-	}
+    public void keyPressed(KeyEvent key) {
 
-	public void keyReleased(KeyEvent key) {
-	}
+        int codeDeLaTouche = key.getKeyCode();
 
-	public void keyTyped(KeyEvent key) {
-	}
+        switch (codeDeLaTouche) {
+            case KeyEvent.VK_UP:
+                pan.up();
+                this.repaint();
+                break;
+            case KeyEvent.VK_DOWN:
+                pan.down();
+                this.repaint();
+                break;
+            case KeyEvent.VK_RIGHT:
+                pan.right();
+                this.repaint();
+                break;
+            case KeyEvent.VK_LEFT:
+                pan.left();
+                this.repaint();
+                break;
+        }
+    }
+
+    public void keyReleased(KeyEvent key) {
+    }
+
+    public void keyTyped(KeyEvent key) {
+    }
 
 	/*private void go(){
 		for(;;){
