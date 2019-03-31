@@ -1,11 +1,9 @@
-import utulities.*;
-import modele.*;
-import java.util.Arrays;
-import java.util.ArrayList;
+import utulities.FileParser;
+import vue.GUI;
+import vue.SokobanVue;
 
-import vue.*;
 public class Main {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
 
         String filePath1 = "src/levels/lvl.xsb";
         String levels = FileParser.parse(filePath1);
@@ -13,14 +11,6 @@ public class Main {
         //LevelMaker est composé de méthode static
 
         SokobanVue.initializeResource();
-        State state = LevelMaker.setLevel(levels,3);
-        Modele modele = new Modele(state);
-        Gui sokoGui = new Gui(modele);
-
-
-
-
-
-
+        new GUI(levels);
     }
 }
