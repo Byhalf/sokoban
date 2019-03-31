@@ -1,3 +1,7 @@
+/**
+ * LevelMaker permet de générer un niveau en fonction d'un String
+ */
+
 package utulities;
 
 import modele.Case;
@@ -8,14 +12,24 @@ import modele.movables.Player;
 
 import java.util.ArrayList;
 
+
 public class LevelMaker {
 
-
+    /**
+     * Sépare le String contenant les niveaux et en retourne un sous forme de String
+     * @param lvls String contenant les niveaux
+     * @param lvlNbr le numéro du niveau à récupérer
+     * @return Un String avec le niveau demandé
+     */
     public static String getLevelAsString(String lvls, int lvlNbr) {
         return lvls.split(";.*\n")[lvlNbr - 1];
 
     }
-
+    /**
+     * Permet d'obtenir les dimension d'un niveau, pour qu'il soit tous rectangulaire
+     * @param lvl
+     * @return int[] contenant les dimensions
+     */
     public static int[] getDim(String lvl) {
         int height = 0;
         int width = 0;
@@ -36,6 +50,11 @@ public class LevelMaker {
         return res;
     }
 
+    /**
+     * @param lvls String des niveaux
+     * @param lvlNbr le numéro du niveau requis
+     * @return Un état de jeu State utilisable par le modèle
+     */
     public static State setLevel(String lvls, int lvlNbr) {
         String lvl = getLevelAsString(lvls, lvlNbr);
         Player player = new Player(0, 0);

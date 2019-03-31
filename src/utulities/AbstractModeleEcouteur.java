@@ -1,3 +1,7 @@
+/**
+ * La seule classe qui implémente ModeleEcouteur
+ */
+
 package utulities;
 
 import java.util.ArrayList;
