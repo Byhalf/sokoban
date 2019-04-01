@@ -125,21 +125,6 @@ public class SokobanVue extends JPanel implements EcouteurModele {
 
         }
     }
-    //Idealement on repeindra que les objets movable, peut être en créant des jpannel juste pour eux?
-    /*
-
-    public void paint_movable(Graphics g,Movable movable){
-
-        int x = movable.getX()*LARGEUR_CASE;
-        int y = movable.getY()*HAUTEUR_CASE;
-        if (movable instanceof Player)
-            g.setColor(Color.BLUE);
-        if (movable instanceof Box)
-            g.setColor(Color.ORANGE);
-        g.fillRect(x,y,LARGEUR_CASE,HAUTEUR_CASE);
-
-    }
-*/
 
 
     @Override
