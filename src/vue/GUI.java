@@ -18,6 +18,7 @@ public class GUI extends JFrame {
         super("Sokoban");
         this.levels = levels;
         menuVue = new MenuVue(levels);
+        GUI thisGui = this;
         menuVue.getList().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -27,7 +28,7 @@ public class GUI extends JFrame {
                         LevelMaker.setLevel(
                                 levels,
                                 menuVue.getList().locationToIndex(e.getPoint()) + 1)
-                ));
+                ), thisGui);
                 remove(menuVue);
                 add(gameVue);
                 gameVue.requestFocus();
@@ -38,5 +39,13 @@ public class GUI extends JFrame {
         add(menuVue);
         pack();
         setVisible(true);
+    }
+
+    public void showMenu() {
+        remove(gameVue);
+        add(menuVue);
+        setVisible(true);
+        pack();
+
     }
 }
