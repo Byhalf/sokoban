@@ -20,7 +20,7 @@ public class GUI extends JFrame {
     /**
      * Constructeur qui crée une interface graphique à partir d'un niveau
      * @param levels Niveau voulu
-     * @throws HeadlessException
+     * @throws HeadlessException Exception
      */
     public GUI(String levels) throws HeadlessException {
         super("Sokoban");
@@ -47,6 +47,7 @@ public class GUI extends JFrame {
         add(menuVue);
         pack();
         setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**

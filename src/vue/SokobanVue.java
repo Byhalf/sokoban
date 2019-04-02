@@ -44,6 +44,7 @@ public class SokobanVue extends JPanel implements EcouteurModele {
         dimY = grid.getDimY();
         setPreferredSize(new Dimension(LARGEUR_CASE * dimX, HAUTEUR_CASE * dimY));
 
+
     }
 
     /**

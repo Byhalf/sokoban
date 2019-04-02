@@ -13,7 +13,7 @@ public class FileParser {
      * Parse lit un fichier et convertit en String son contenu
      * @param filePath Chemin du fichier à lire
      * @return Contenu du fichier en String
-     * @throws Exception
+     * @throws Exception Exception de lecture du fichier
      */
     public static String parse(String filePath) throws Exception {
         String line = null;

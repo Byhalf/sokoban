@@ -67,7 +67,7 @@ public abstract class Movable extends AbstractModeleEcouteur {
     /**
      * Permet le déplacement des objets déplacables
      * @param s Etat du jeu actuellement
-     * @param d Une direction (LEFT,RIGHT,UP,DOWN)
+     * @param d Une direction (L,R,U,D)
      */
     public void deplacement(State s, Direction d) {
         if (this.isPossible(s, d)) {
@@ -94,7 +94,7 @@ public abstract class Movable extends AbstractModeleEcouteur {
      * Effectue le déplacement de L'objet déplacable
      * @param x Coordonnée x
      * @param y Coordonné y
-     * @param d Direction (LEFT,RIGHT,UP,DOWN)
+     * @param d Direction (L,R,U,D)
      * @return Les nouvelles coordonnées sous forme d'un tableau
      */
     public int[] nextMove(int x, int y, Direction d) {
@@ -124,7 +124,7 @@ public abstract class Movable extends AbstractModeleEcouteur {
     /**
      * Définit si le coup est possible
      * @param tab Etat du jeu actuellement
-     * @param d Direction (LEFT,RIGHT,UP,DOWN)
+     * @param d Direction (L,R,U,D)
      * @return Booléen qui indique si le coup est possible
      */
     public boolean isPossible(State tab, Direction d) {

@@ -30,7 +30,7 @@ public class Player extends Movable {
     /**
      *Définit si le coup du joueur est possible
      * @param tab Etat du jeu actuellement
-     * @param d Direction (LEFT,RIGHT,UP,DOWN)
+     * @param d Direction (L,R,U,D)
      * @return Booléen qui indique si le coup est possible
      */
     @Override
