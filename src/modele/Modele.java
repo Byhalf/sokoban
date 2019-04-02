@@ -38,7 +38,10 @@ public class Modele extends AbstractModeleEcouteur {
 
 
     public void resetLevel() {
-        state = history.removeFirst();
+        if (history.size() != 0) {
+            state = history.removeFirst();
+            fireChangement();
+        }
         fireChangement();
         history = new ArrayDeque();
     }

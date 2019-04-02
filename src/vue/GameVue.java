@@ -12,11 +12,13 @@ import java.awt.event.KeyListener;
 
 public class GameVue extends JPanel implements KeyListener, ActionListener {
     Modele modele;
-    JButton buttonCancel, buttonRestart;
+    JButton buttonCancel, buttonRestart, buttonMenu;
     SokobanVue sokovue;
     JPanel pan;
+    GUI gui;
 
-    public GameVue(Modele modele) {
+    public GameVue(Modele modele, GUI gui) {
+        this.gui = gui;
         this.modele = modele;
         this.addKeyListener(this);
 
@@ -33,6 +35,10 @@ public class GameVue extends JPanel implements KeyListener, ActionListener {
         buttonRestart = new JButton("Restart");
         buttonRestart.addActionListener(this);
         pan.add(buttonRestart);
+
+        buttonMenu = new JButton("Menu");
+        buttonMenu.addActionListener(this);
+        pan.add(buttonMenu);
 
         sokovue.add(pan);
         add(sokovue, BorderLayout.CENTER);
@@ -72,6 +78,8 @@ public class GameVue extends JPanel implements KeyListener, ActionListener {
         } else if (obj == buttonRestart) {
             modele.resetLevel();
             this.requestFocus();
+        } else if (obj == buttonMenu) {
+            gui.showMenu();
         }
     }
 }

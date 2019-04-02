@@ -1,3 +1,7 @@
+/**
+ * La vue du menu.
+ */
+
 package vue;
 
 import javax.swing.*;
@@ -11,6 +15,10 @@ public class MenuVue extends JPanel {
     private String levels;
     private JList<String> list;
 
+    /**
+     * Créé une list des niveaux qui sont dans le String passé en paramètre
+     * @param levels
+     */
     public MenuVue(String levels) {
         this.levels = levels;
         Matcher m = Pattern.compile(";(.*)\n").matcher(levels);
@@ -23,6 +31,10 @@ public class MenuVue extends JPanel {
         this.add(list);
     }
 
+    /**
+     * getter qui
+     * @return la liste des numéros et nom de niveau
+     */
     public JList<String> getList() {
         return list;
     }
