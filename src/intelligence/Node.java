@@ -3,6 +3,12 @@ package intelligence;
 import modele.movables.Movable;
 
 public class Node {
+    public Node(int x, int y) {
+        this.x = x;
+        this.y = y;
+        this.distanceStart = 0;
+    }
+
     //non heuristique
     private int distanceStart;
     //heuristique
@@ -26,13 +32,16 @@ public class Node {
         return parent;
     }
 
-    public Node(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public void setDistanceStart(int distanceStart) {
+        this.distanceStart = distanceStart;
     }
 
     public void setParent(Node parent) {
         this.parent = parent;
+    }
+
+    public boolean compare(Node nodeToCompare) {
+        return (nodeToCompare.getX() == getX() && nodeToCompare.getY() == getY());
     }
 
     public int getDistanceStart() {

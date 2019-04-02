@@ -89,6 +89,17 @@ public class LevelMaker {
                 case '$':
                     boxes.add(new Box(i, j));
                     break;
+                case '*':
+                    //caisse sur zone de rangement
+                    boxes.add(new Box(i, j));
+                    grid[i][j] = Case.GOAL;
+                    break;
+                case '+':
+                    // personnage sur zone de rangement
+                    player = new Player(i, j);
+                    grid[i][j] = Case.GOAL;
+                    break;
+
 
             }
             i++;

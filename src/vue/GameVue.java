@@ -17,6 +17,7 @@ public class GameVue extends JPanel implements KeyListener, ActionListener {
     JPanel pan;
     GUI gui;
 
+
     public GameVue(Modele modele, GUI gui) {
         this.gui = gui;
         this.modele = modele;
