@@ -10,6 +10,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * Classe créant les éléments graphiques autour du niveau de jeu tel que les boutons
+ */
 public class GameVue extends JPanel implements KeyListener, ActionListener {
     Modele modele;
     JButton buttonCancel, buttonRestart, buttonMenu;
@@ -17,6 +20,11 @@ public class GameVue extends JPanel implements KeyListener, ActionListener {
     JPanel pan;
     GUI gui;
 
+    /**
+     * Constructeur des Objets exterieur au jeu
+     * @param modele Modele du jeu
+     * @param gui Interface graphique du Jeu
+     */
     public GameVue(Modele modele, GUI gui) {
         this.gui = gui;
         this.modele = modele;
@@ -48,14 +56,26 @@ public class GameVue extends JPanel implements KeyListener, ActionListener {
         setVisible(true);
     }
 
+    /**
+     * Détecte quand une touche est enfoncée
+     * @param e Touche enfoncée
+     */
     @Override
     public void keyTyped(KeyEvent e) {
     }
 
+    /**
+     * Détecte quand une touche est relachée
+     * @param e Touche relachée
+     */
     @Override
     public void keyReleased(KeyEvent e) {
     }
 
+    /**
+     * Détecte et traduit pour le modèle la touche appuyée
+     * @param e Touche appuyée
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
@@ -69,6 +89,10 @@ public class GameVue extends JPanel implements KeyListener, ActionListener {
         }
     }
 
+    /**
+     * Effectue l'action venant d'un bouton
+     * @param e Objet appuyé
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();

@@ -1,7 +1,3 @@
-/**
- * La vue du menu.
- */
-
 package vue;
 
 import javax.swing.*;
@@ -9,15 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+/**
+ * La vue du menu.
+ */
 public class MenuVue extends JPanel {
 
     private String levels;
     private JList<String> list;
 
     /**
-     * Créé une list des niveaux qui sont dans le String passé en paramètre
-     * @param levels
+     * Créé une liste des niveaux qui sont dans le String passé en paramètre
+     * @param levels Niveaux présent dans le fichier des Niveaux
      */
     public MenuVue(String levels) {
         this.levels = levels;
@@ -32,7 +30,7 @@ public class MenuVue extends JPanel {
     }
 
     /**
-     * getter qui
+     * Retourne la liste des numéros et les Noms de Niveaux
      * @return la liste des numéros et nom de niveau
      */
     public JList<String> getList() {

@@ -1,7 +1,3 @@
-/**
- * File Parser permet de lire un fichier et de convertir son contenu en String
- */
-
 package utulities;
 
 import java.io.BufferedReader;
@@ -9,11 +5,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * File Parser permet de lire un fichier et de convertir son contenu en String
+ */
 public class FileParser {
     /**
-     * parse lit un fichier et converti en String son contenu
-     * @param filePath le chemin du fichier à lire
-     * @return le contenu du fichier en String
+     * Parse lit un fichier et convertit en String son contenu
+     * @param filePath Chemin du fichier à lire
+     * @return Contenu du fichier en String
      * @throws Exception
      */
     public static String parse(String filePath) throws Exception {
