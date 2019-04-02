@@ -9,6 +9,8 @@ public class Node {
         this.distanceStart = 0;
     }
 
+    private int value;
+
     //non heuristique
     private int distanceStart;
     //heuristique
@@ -16,9 +18,13 @@ public class Node {
 
     private Node parent;
 
-    private int value;
     private int x;
     private int y;
+
+    public Node(int x, int y, Node node) {
+        this(x, y);
+        setDistanceStart(node.getDistanceStart() + 1); //distance forcément de 1
+    }
 
     public Node(Movable movable) {
         this(movable.getX(), movable.getY());

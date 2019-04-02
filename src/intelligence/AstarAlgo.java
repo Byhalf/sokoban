@@ -15,25 +15,39 @@ public class AstarAlgo {
         openList.add(start);
     }
 
-    public void algoStart(AstarGrid grid) {
+    public Node algoStart(AstarGrid grid) {
         while (openList.size() > 0) {
-            Node q = popMinFromList(openList);
-            ArrayList<Node> neighbors = grid.getNeighbourNodes(q);
+            Node bestBet = popMinFromList(openList);
+            ArrayList<Node> neighbors = grid.getNeighbourNodes(bestBet);
             for (Node neighbor : neighbors) {
-                neighbor.setParent(q);
+                neighbor.setParent(bestBet);
                 if (neighbor.compare(end)) {
-                    break;
-                    //stop search sur l'aglo a voir push puis return?
+                    return neighbor;
                 }
-                neighbor.setDistanceEnd(end);
-                int distanceStart = q.getDistanceStart() + 1; //distance forcément de 1
-                neighbor.setDistanceStart(distanceStart);
-                neighbor.setValue(distanceStart + neighbor.getDistanceEnd());
-
+                neighbor.setValue(neighbor.getDistanceStart() + neighbor.getDistanceEnd());
+                if (addToOpenList(neighbor))
+                    openList.add(neighbor);
             }
-
-
+            closedList.add(bestBet);
         }
+        return null;
+    }
+
+    public Boolean addToOpenList(Node neighbor) {
+        for (Node explored : openList) {
+            if (explored.compare(neighbor)) {
+                if (explored.getValue() < neighbor.getValue()) {
+                    return false;
+                }
+            }
+        }
+        for (Node closed : closedList) {
+            if (closed.compare(neighbor)) {
+                if (closed.getValue() < neighbor.getValue())
+                    return false;
+            }
+        }
+        return true;
     }
 
     public Node popMinFromList(ArrayList<Node> openList) {
@@ -46,6 +60,14 @@ public class AstarAlgo {
         }
         openList.remove(res);
         return res;
+    }
+
+    public ArrayList<Node> getPath(AstarGrid grid) {
+        ArrayList<Node> path = new ArrayList<>();
+        Node res = algoStart(grid);
+        if (res == null) {
+            return path;
+        }
     }
 
 

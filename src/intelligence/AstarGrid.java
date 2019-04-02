@@ -93,7 +93,7 @@ public class AstarGrid {
     }
 
     public ArrayList<Node> getNeighbourNodes(Node node) {
-        //On transforme les box en null, comme ça si une boite en colle un autre son chemin est bloqué.
+        //On transforme les box en false, comme ça si une boite en colle un autre son chemin est bloqué.
         //Notre pathfinder ne cherchera pas à arrivé sur la boite mais à coté donc tans pis ça valeur est null
         //faut juste une case d'arrivé à coté
         AstarGrid unmovables = movableToUnmovable();
