@@ -18,7 +18,7 @@ public class Player extends Movable {
     /**
      * Permet le déplacement du joueur
      * @param s Etat du jeu actuellement
-     * @param d Une direction (LEFT,RIGHT,UP,DOWN)
+     * @param d Une direction (L,R,U,D)
      */
     public void deplacement(State s, Direction d) {
         if (isPossible(s, d)) {

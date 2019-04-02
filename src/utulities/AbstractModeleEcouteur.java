@@ -28,7 +28,7 @@ abstract public class AbstractModeleEcouteur implements ModeleEcouteur {
     }
 
     /**
-     * Détecte un changement et permet d'actualsier la vue
+     * Détecte un changement et permet d'actualiser la vue
      */
     protected void fireChangement() {
         for (EcouteurModele e : ecouteurModeles) {

@@ -15,7 +15,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Classe créant le Graphique du niveau
+ * Classe creant le Graphique du niveau
  */
 public class SokobanVue extends JPanel implements EcouteurModele {
     public static final int LARGEUR_CASE = 30;
@@ -48,7 +48,7 @@ public class SokobanVue extends JPanel implements EcouteurModele {
     }
 
     /**
-     * Met en mémoire les images qui vont servir dans l'affichage graphique
+     * Met en memoire les images qui vont servir dans l'affichage graphique
      */
     public static void initializeResource() {
         try {
@@ -149,7 +149,7 @@ public class SokobanVue extends JPanel implements EcouteurModele {
     }
 
     /**
-     * Permet de mettre à jour l'affichage Graphique à chaque coup
+     * Permet de mettre a jour l'affichage Graphique a chaque coup
      */
     @Override
     public void modeleMisAJour(Object source) {

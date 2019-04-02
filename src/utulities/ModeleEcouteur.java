@@ -14,7 +14,7 @@ public interface ModeleEcouteur {
 
     /**
      * Permet de retirer un écouteur
-     * @param e Instance d'un bojet implémentant EcouteurModele
+     * @param e Instance d'un objet implémentant EcouteurModele
      */
     void retraitEcouteur(utulities.EcouteurModele e);
 

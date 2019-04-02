@@ -9,7 +9,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * Classe créant l'interface graphique avec tous les éléments dessus
+ * Classe creant l'interface graphique avec tous les elements dessus
  */
 public class GUI extends JFrame {
 
@@ -18,7 +18,7 @@ public class GUI extends JFrame {
     String levels;
 
     /**
-     * Constructeur qui crée une interface graphique à partir d'un niveau
+     * Constructeur qui cree une interface graphique a partir d'un niveau
      * @param levels Niveau voulu
      * @throws HeadlessException Exception
      */

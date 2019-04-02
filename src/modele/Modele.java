@@ -33,7 +33,7 @@ public class Modele extends AbstractModeleEcouteur {
 
     /**
      * Effectue le déplacement d'un Objet Déplacable
-     * @param d Direction (LEFT,RIGHT,UP,DOWN)
+     * @param d Direction (L,R,U,D)
      */
     public void deplacement(Direction d) {
         history.addLast(state);

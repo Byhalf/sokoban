@@ -54,7 +54,7 @@ public class State extends AbstractModeleEcouteur {
 
     /**
      * Effectue le déplacement d'un Joueur ou plus
-     * @param d Direction (LEFT,RIGHT,UP,DOWN)
+     * @param d Direction (L,R,U,D)
      * @return Nouvel état de jeu avec le déplacement effectué
      */
     public State deplacement(Direction d) {

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 /**
- * La vue du menu.
+ * Class creant la vue du menu.
  */
 public class MenuVue extends JPanel {
 
@@ -14,8 +14,8 @@ public class MenuVue extends JPanel {
     private JList<String> list;
 
     /**
-     * Créé une liste des niveaux qui sont dans le String passé en paramètre
-     * @param levels Niveaux présent dans le fichier des Niveaux
+     * Cree une liste des niveaux qui sont dans le String passe en parametre
+     * @param levels Niveaux present dans le fichier des Niveaux
      */
     public MenuVue(String levels) {
         this.levels = levels;
@@ -30,8 +30,8 @@ public class MenuVue extends JPanel {
     }
 
     /**
-     * Retourne la liste des numéros et les Noms de Niveaux
-     * @return la liste des numéros et nom de niveau
+     * Retourne la liste des numeros et des noms de niveaux
+     * @return la liste des numeros et des nom de niveaux
      */
     public JList<String> getList() {
         return list;

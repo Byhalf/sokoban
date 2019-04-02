@@ -11,7 +11,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 /**
- * Classe créant les éléments graphiques autour du niveau de jeu tel que les boutons
+ * Classe creant les elements graphiques autour du niveau de jeu tel que les boutons
  */
 public class GameVue extends JPanel implements KeyListener, ActionListener {
     Modele modele;
@@ -57,23 +57,23 @@ public class GameVue extends JPanel implements KeyListener, ActionListener {
     }
 
     /**
-     * Détecte quand une touche est enfoncée
-     * @param e Touche enfoncée
+     * Detecte quand une touche est enfoncee
+     * @param e Touche enfoncee
      */
     @Override
     public void keyTyped(KeyEvent e) {
     }
 
     /**
-     * Détecte quand une touche est relachée
-     * @param e Touche relachée
+     * Detecte quand une touche est relachee
+     * @param e Touche relachee
      */
     @Override
     public void keyReleased(KeyEvent e) {
     }
 
     /**
-     * Détecte et traduit pour le modèle la touche appuyée
+     * Detecte et traduit pour le modele la touche appuyee
      * @param e Touche appuyée
      */
     @Override
@@ -91,7 +91,7 @@ public class GameVue extends JPanel implements KeyListener, ActionListener {
 
     /**
      * Effectue l'action venant d'un bouton
-     * @param e Objet appuyé
+     * @param e Objet appuye
      */
     @Override
     public void actionPerformed(ActionEvent e) {
