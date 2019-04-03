@@ -3,11 +3,7 @@ package intelligence;
 import modele.movables.Movable;
 
 public class Node {
-    public Node(int x, int y) {
-        this.x = x;
-        this.y = y;
-        this.distanceStart = 0;
-    }
+
 
     private int value;
 
@@ -16,7 +12,7 @@ public class Node {
     //heuristique
     private int distanceEnd;
 
-    private Node parent;
+    private Node parent = null;
 
     private int x;
     private int y;
@@ -30,36 +26,38 @@ public class Node {
         this(movable.getX(), movable.getY());
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public Node(int x, int y) {
+        this.x = x;
+        this.y = y;
+        this.distanceStart = 0;
     }
 
-    public Node getParent() {
-        return parent;
+    @Override
+    public String toString() {
+        return getX() + "   " + getY();
     }
 
-    public void setDistanceStart(int distanceStart) {
-        this.distanceStart = distanceStart;
-    }
-
-    public void setParent(Node parent) {
-        this.parent = parent;
-    }
 
     public boolean compare(Node nodeToCompare) {
         return (nodeToCompare.getX() == getX() && nodeToCompare.getY() == getY());
+    }
+
+
+
+    public void setDistanceEnd(Node endNode) {
+        distanceEnd = Math.abs(getX() - endNode.getX()) + Math.abs(getY() - endNode.getY());
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 
     public int getDistanceStart() {
         return distanceStart;
     }
 
-    public int getDistanceEnd() {
-        return distanceEnd;
-    }
-
-    public void setDistanceEnd(Node endNode) {
-        distanceEnd = Math.abs(getX() - endNode.getX()) + Math.abs(getY() - endNode.getY());
+    public void setDistanceStart(int distanceStart) {
+        this.distanceStart = distanceStart;
     }
 
     public int getValue() {
@@ -74,5 +72,16 @@ public class Node {
         return y;
     }
 
+    public Node getParent() {
+        return parent;
+    }
+
+    public void setParent(Node parent) {
+        this.parent = parent;
+    }
+
+    public int getDistanceEnd() {
+        return distanceEnd;
+    }
 
 }

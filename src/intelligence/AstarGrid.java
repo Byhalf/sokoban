@@ -13,6 +13,7 @@ public class AstarGrid {
     State state;
     ArrayList goals = new ArrayList();
     Boolean[][] boolGrid;
+    Boolean[][] boolGridUnmovable;
     int dimX, dimY;
 
     public AstarGrid(State state) {
@@ -61,19 +62,24 @@ public class AstarGrid {
         return dimY;
     }
 
-    public AstarGrid makeCopy(AstarGrid original) {
-        Boolean[][] originalBool = original.getBoolGrid();
+    public AstarGrid makeCopy() {
+        Boolean[][] originalBool = getBoolGrid();
+        Boolean[][] boolGridCopy = copyBoolGrid();
+        return new AstarGrid(getState(), boolGridCopy, getGoals());
+    }
+
+    public Boolean[][] copyBoolGrid() {
         Boolean[][] boolGridCopy = new Boolean[getDimX()][getDimY()];
         for (int i = 0; i < getDimX(); i++) {
             for (int j = 0; j < getDimY(); j++) {
-                boolGridCopy[i][j] = originalBool[i][j];
+                boolGridCopy[i][j] = boolGrid[i][j];
             }
         }
-        return new AstarGrid(original.getState(), boolGridCopy, original.getGoals());
+        return boolGridCopy;
     }
 
     public AstarGrid movableToUnmovable(Movable movable) {
-        AstarGrid res = makeCopy(this);
+        AstarGrid res = makeCopy();
         for (Box box : state.getBoxes()) {
             res.getBoolGrid()[box.getX()][box.getY()] = false;
         }
@@ -84,41 +90,55 @@ public class AstarGrid {
         return res;
     }
 
-    public AstarGrid movableToUnmovable() {
-        AstarGrid res = makeCopy(this);
+    public Boolean[][] movableToUnmovableForGrid() {
+        Boolean[][] res = copyBoolGrid();
         for (Box box : state.getBoxes()) {
-            res.getBoolGrid()[box.getX()][box.getY()] = null;
+            res[box.getX()][box.getY()] = false;
         }
         return res;
     }
 
     public ArrayList<Node> getNeighbourNodes(Node node) {
         //On transforme les box en false, comme ça si une boite en colle un autre son chemin est bloqué.
-        //Notre pathfinder ne cherchera pas à arrivé sur la boite mais à coté donc tans pis ça valeur est null
+        //Notre pathfinder ne cherchera pas à arrivé sur la boite mais à coté donc tans pis ça valeur est false
         //faut juste une case d'arrivé à coté
-        AstarGrid unmovables = movableToUnmovable();
+
+        if (boolGridUnmovable == null)
+            boolGridUnmovable = movableToUnmovableForGrid();
         ArrayList<Node> res = new ArrayList<>();
         int x = node.getX();
         int y = node.getY();
-        if (x - 1 > 0) {
-            if (boolGrid[x - 1][y])
+        if (x - 1 >= 0) {
+            if (boolGridUnmovable[x - 1][y])
                 res.add(new Node(x - 1, y));
         }
-        if (x + 1 >= getDimX()) {
-            if (boolGrid[x + 1][y])
+        if (x + 1 < getDimX()) {
+            if (boolGridUnmovable[x + 1][y])
                 res.add(new Node(x + 1, y));
         }
-        if (y - 1 > 0) {
-            if (boolGrid[x][y - 1]) {
+        if (y - 1 >= 0) {
+            if (boolGridUnmovable[x][y - 1]) {
                 res.add(new Node(x, y - 1));
             }
         }
-        if (y + 1 >= getDimY()) {
-            if (boolGrid[x][y + 1]) {
+        if (y + 1 < getDimY()) {
+            if (boolGridUnmovable[x][y + 1]) {
                 res.add(new Node(x, y + 1));
             }
         }
         return res;
+    }
+
+    public void showToDel() {
+        for (int i = 0; i < getDimY(); i++) {
+            for (int j = 0; j < getDimX(); j++) {
+                if (getBoolGrid()[j][i])
+                    System.out.print("0");
+                else
+                    System.out.print("X");
+            }
+            System.out.print("\n");
+        }
     }
 
 

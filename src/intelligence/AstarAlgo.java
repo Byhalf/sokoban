@@ -1,12 +1,12 @@
 package intelligence;
 
 import java.util.ArrayList;
-
 public class AstarAlgo {
     private ArrayList<Node> openList = new ArrayList<>();
     private ArrayList<Node> closedList = new ArrayList<>();
     private Node start;
     private Node end;
+
 
     public AstarAlgo(Node start, Node end) {
         this.start = start;
@@ -19,11 +19,14 @@ public class AstarAlgo {
         while (openList.size() > 0) {
             Node bestBet = popMinFromList(openList);
             ArrayList<Node> neighbors = grid.getNeighbourNodes(bestBet);
+            System.out.println("number of neighbours " + neighbors.size());
             for (Node neighbor : neighbors) {
+                System.out.println(neighbor);
                 neighbor.setParent(bestBet);
                 if (neighbor.compare(end)) {
                     return neighbor;
                 }
+                neighbor.setDistanceEnd(end);
                 neighbor.setValue(neighbor.getDistanceStart() + neighbor.getDistanceEnd());
                 if (addToOpenList(neighbor))
                     openList.add(neighbor);
@@ -62,15 +65,16 @@ public class AstarAlgo {
         return res;
     }
 
-    public ArrayList<Node> getPath(AstarGrid grid) {
+    public ArrayList<Node> getPath(Node endNode) {
         ArrayList<Node> path = new ArrayList<>();
-        Node res = algoStart(grid);
-        if (res == null) {
+        if (endNode == null)
             return path;
+        while (endNode.getParent() != null) {
+            path.add(0, endNode);
+            endNode = endNode.getParent();
         }
+        path.add(0, start);
+        return path;
     }
-
-
-
 
 }
