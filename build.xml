@@ -43,7 +43,7 @@
 </fileset>
 </javadoc>
 <exec executable="open" spawn="yes">
-<arg value="lib/index.html"/>
+<arg value="${lib.dir}/index.html"/>
 </exec>
 </target>
 </project>
