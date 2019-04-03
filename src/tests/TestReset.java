@@ -9,23 +9,24 @@ import utulities.FileParser;
 import utulities.LevelMaker;
 
 
-public class TestCancel {
+public class TestReset {
     String filePath1 = "src/levels/lvl.xsb";
     String levels = FileParser.parse(filePath1);
     private Modele modele = new Modele(LevelMaker.setLevel(levels, 1));
-    private Direction d;
+    private Direction dL, dU;
 
-    public TestCancel() throws Exception {
+    public TestReset() throws Exception {
     }
 
     @Test
-    public void testCancel() {
-        d = Direction.L;
-        modele.deplacement(d);
-        State newState = modele.getState();
-        modele.deplacement(d);
-        modele.annulDeplacement();
+    public void testReset() {
+        dL = Direction.L;
+        dU = Direction.U;
+        State oldState = modele.getState();
+        modele.deplacement(dL);
+        modele.deplacement(dU);
+        modele.resetLevel();
 
-        Assertions.assertSame(newState, modele.getState());
+        Assertions.assertSame(oldState, modele.getState());
     }
 }
