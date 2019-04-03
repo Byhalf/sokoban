@@ -15,6 +15,7 @@ public class State extends AbstractModeleEcouteur {
     private Grid grid;
     private Player player;
     private ArrayList<Box> boxes;
+    private int num_coup = 0;
 
     /**
      * Constructeur de l'Etat du jeu
@@ -26,6 +27,7 @@ public class State extends AbstractModeleEcouteur {
         this.grid = grid;
         this.boxes = boxes;
         this.player = player;
+
     }
 
     /**
@@ -60,7 +62,24 @@ public class State extends AbstractModeleEcouteur {
     public State deplacement(Direction d) {
         State newState = getCopy(this);
         newState.getPlayer().deplacement(newState, d);
+        if(newState.getPlayer().getX()==this.getPlayer().getX() && newState.getPlayer().getY()==this.getPlayer().getY()){
+            return newState;
+        }
+        newState.increment_num_coup();
         return newState;
+    }
+    /**
+     * Retourne le nombre de coup
+     * @return Le nombre de coup
+     */
+    public int getNum_coup() {
+        return num_coup;
+    }
+    /**
+     * Augmente le nombre de coup de 1
+     */
+    public void increment_num_coup() {
+        num_coup++;
     }
 
     /**
@@ -90,7 +109,9 @@ public class State extends AbstractModeleEcouteur {
             newBoxes.add(newBox);
         }
         Player newPlayer = new Player(player.getX(), player.getY());
-        return new State(getGrid(), newBoxes, newPlayer);
+        State res = new State(getGrid(), newBoxes, newPlayer);
+        res.num_coup = num_coup;
+        return res;
     }
 
 

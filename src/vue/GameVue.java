@@ -2,6 +2,7 @@ package vue;
 
 import modele.Modele;
 import modele.movables.Direction;
+import modele.movables.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,6 +11,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+
+
 /**
  * Classe creant les elements graphiques autour du niveau de jeu tel que les boutons
  */
@@ -17,8 +20,9 @@ public class GameVue extends JPanel implements KeyListener, ActionListener {
     Modele modele;
     JButton buttonCancel, buttonRestart, buttonMenu;
     SokobanVue sokovue;
-    JPanel pan;
+    JPanel pan,pan1;
     GUI gui;
+    JLabel nombreCoup;
 
     /**
      * Constructeur des Objets exterieur au jeu
@@ -36,6 +40,10 @@ public class GameVue extends JPanel implements KeyListener, ActionListener {
         pan = new JPanel();
         pan.setLayout(new GridLayout(3, 1));
 
+        pan1 = new JPanel();
+        pan1.setLayout(new GridLayout(1,1));
+
+
         buttonCancel = new JButton("Cancel");
         buttonCancel.addActionListener(this);
         pan.add(buttonCancel);
@@ -48,9 +56,15 @@ public class GameVue extends JPanel implements KeyListener, ActionListener {
         buttonMenu.addActionListener(this);
         pan.add(buttonMenu);
 
+        nombreCoup = new JLabel();
+        nombreCoup.setText(String.valueOf(modele.getState().getNum_coup()));
+        pan1.add(nombreCoup);
+
         sokovue.add(pan);
+        sokovue.add(pan1);
         add(sokovue, BorderLayout.CENTER);
         add(pan, BorderLayout.EAST);
+        add(pan1,BorderLayout.SOUTH);
 
         setFocusable(true);
         setVisible(true);
@@ -80,12 +94,16 @@ public class GameVue extends JPanel implements KeyListener, ActionListener {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             modele.deplacement(Direction.R);
+            nombreCoup.setText(String.valueOf(modele.getState().getNum_coup()));
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             modele.deplacement(Direction.L);
+            nombreCoup.setText(String.valueOf(modele.getState().getNum_coup()));
         } else if (e.getKeyCode() == KeyEvent.VK_UP) {
             modele.deplacement(Direction.U);
+            nombreCoup.setText(String.valueOf(modele.getState().getNum_coup()));
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             modele.deplacement(Direction.D);
+            nombreCoup.setText(String.valueOf(modele.getState().getNum_coup()));
         }
     }
 
@@ -99,9 +117,11 @@ public class GameVue extends JPanel implements KeyListener, ActionListener {
         if (obj == buttonCancel) {
             modele.annulDeplacement();
             this.requestFocus();
+            nombreCoup.setText(String.valueOf(modele.getState().getNum_coup()));
         } else if (obj == buttonRestart) {
             modele.resetLevel();
             this.requestFocus();
+            nombreCoup.setText(String.valueOf(modele.getState().getNum_coup()));
         } else if (obj == buttonMenu) {
             gui.showMenu();
         }

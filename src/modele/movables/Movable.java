@@ -11,7 +11,7 @@ import utulities.AbstractModeleEcouteur;
 public abstract class Movable extends AbstractModeleEcouteur {
     private int x;
     private int y;
-    private int num_coup = 0;
+
 
     /**
      * Constructeur d'un objet déplacable avec deux coordonnées
@@ -38,21 +38,6 @@ public abstract class Movable extends AbstractModeleEcouteur {
      */
     public int getY() {
         return y;
-    }
-
-    /**
-     * Retourne le nombre de coup
-     * @return Le nombre de coup
-     */
-    public int getNum_coup() {
-        return num_coup;
-    }
-
-    /**
-     * Augmente le nombre de coup de 1
-     */
-    public void increment_num_coup() {
-        num_coup++;
     }
 
     /**
