@@ -24,7 +24,7 @@ public class Main {
         gridTest.showToDel();
 
 
-        AstarAlgo astarAlgo = new AstarAlgo(new Node(2, 1), new Node(5, 1));
+        AstarAlgo astarAlgo = new AstarAlgo(new Node(2, 1), new Node(7, 3));
         Node endNode = astarAlgo.algoStart(gridTest);
         ArrayList<Node> path = astarAlgo.getPath(endNode);
         for (Node node : path) {

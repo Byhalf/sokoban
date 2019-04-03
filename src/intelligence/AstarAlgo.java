@@ -19,9 +19,11 @@ public class AstarAlgo {
         while (openList.size() > 0) {
             Node bestBet = popMinFromList(openList);
             ArrayList<Node> neighbors = grid.getNeighbourNodes(bestBet);
+
             System.out.println("number of neighbours " + neighbors.size());
+            System.out.println(bestBet);
             for (Node neighbor : neighbors) {
-                System.out.println(neighbor);
+                //System.out.println(neighbor);
                 neighbor.setParent(bestBet);
                 if (neighbor.compare(end)) {
                     return neighbor;
@@ -73,7 +75,7 @@ public class AstarAlgo {
             path.add(0, endNode);
             endNode = endNode.getParent();
         }
-        path.add(0, start);
+        //path.add(0, start);
         return path;
     }
 

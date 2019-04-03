@@ -17,10 +17,7 @@ public class Node {
     private int x;
     private int y;
 
-    public Node(int x, int y, Node node) {
-        this(x, y);
-        setDistanceStart(node.getDistanceStart() + 1); //distance forcément de 1
-    }
+
 
     public Node(Movable movable) {
         this(movable.getX(), movable.getY());
@@ -78,6 +75,9 @@ public class Node {
 
     public void setParent(Node parent) {
         this.parent = parent;
+        setDistanceStart(parent.getDistanceStart() + 1); //distance forcément de 1
+
+
     }
 
     public int getDistanceEnd() {

@@ -98,6 +98,10 @@ public class AstarGrid {
         return res;
     }
 
+    public ArrayList<Node> getNeighbourNodes(Box box) {
+        return getNeighbourNodes(new Node(box.getX(), box.getY()));
+    }
+
     public ArrayList<Node> getNeighbourNodes(Node node) {
         //On transforme les box en false, comme ça si une boite en colle un autre son chemin est bloqué.
         //Notre pathfinder ne cherchera pas à arrivé sur la boite mais à coté donc tans pis ça valeur est false

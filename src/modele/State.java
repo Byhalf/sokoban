@@ -37,12 +37,17 @@ public class State extends AbstractModeleEcouteur {
         return newState;
     }
 
+    public boolean isOnGoal(Box box) {
+        if (this.grid.getCase(box.getX(), box.getY()) != Case.GOAL)
+            return false;
+        return true;
+    }
+
     public boolean isFinished() {
         boxes = this.boxes;
         for (Box box : boxes) {
-            if (this.grid.getCase(box.getX(), box.getY()) != Case.GOAL) {
+            if (!isOnGoal(box))
                 return false;
-            }
         }
 
         return true;
