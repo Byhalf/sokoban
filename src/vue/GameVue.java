@@ -2,7 +2,6 @@ package vue;
 
 import modele.Modele;
 import modele.movables.Direction;
-import modele.movables.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +17,7 @@ import java.awt.event.KeyListener;
  */
 public class GameVue extends JPanel implements KeyListener, ActionListener {
     Modele modele;
-    JButton buttonCancel, buttonRestart, buttonMenu;
+    JButton buttonCancel, buttonRestart, buttonMenu, buttonAI;
     SokobanVue sokovue;
     JPanel pan,pan1;
     GUI gui;
@@ -38,7 +37,7 @@ public class GameVue extends JPanel implements KeyListener, ActionListener {
         sokovue = new SokobanVue(modele);
 
         pan = new JPanel();
-        pan.setLayout(new GridLayout(3, 1));
+        pan.setLayout(new GridLayout(4, 1));
 
         pan1 = new JPanel();
         pan1.setLayout(new GridLayout(1,1));
@@ -55,6 +54,10 @@ public class GameVue extends JPanel implements KeyListener, ActionListener {
         buttonMenu = new JButton("Menu");
         buttonMenu.addActionListener(this);
         pan.add(buttonMenu);
+
+        buttonAI = new JButton("AI");
+        buttonAI.addActionListener(this);
+        pan.add(buttonAI);
 
         nombreCoup = new JLabel();
         nombreCoup.setText(String.valueOf(modele.getState().getNum_coup()));
@@ -124,6 +127,9 @@ public class GameVue extends JPanel implements KeyListener, ActionListener {
             nombreCoup.setText(String.valueOf(modele.getState().getNum_coup()));
         } else if (obj == buttonMenu) {
             gui.showMenu();
+        } else if (obj == buttonAI) {
+            this.requestFocus();
         }
+
     }
 }
