@@ -15,7 +15,7 @@ import java.awt.event.KeyListener;
  */
 public class GameVue extends JPanel implements KeyListener, ActionListener {
     Modele modele;
-    JButton buttonCancel, buttonRestart, buttonMenu;
+    JButton buttonCancel, buttonRestart, buttonMenu, buttonAI;
     SokobanVue sokovue;
     JPanel pan;
     GUI gui;
@@ -34,7 +34,7 @@ public class GameVue extends JPanel implements KeyListener, ActionListener {
         sokovue = new SokobanVue(modele);
 
         pan = new JPanel();
-        pan.setLayout(new GridLayout(3, 1));
+        pan.setLayout(new GridLayout(4, 1));
 
         buttonCancel = new JButton("Cancel");
         buttonCancel.addActionListener(this);
@@ -47,6 +47,10 @@ public class GameVue extends JPanel implements KeyListener, ActionListener {
         buttonMenu = new JButton("Menu");
         buttonMenu.addActionListener(this);
         pan.add(buttonMenu);
+
+        buttonAI = new JButton("AI");
+        buttonAI.addActionListener(this);
+        pan.add(buttonAI);
 
         sokovue.add(pan);
         add(sokovue, BorderLayout.CENTER);
@@ -104,6 +108,8 @@ public class GameVue extends JPanel implements KeyListener, ActionListener {
             this.requestFocus();
         } else if (obj == buttonMenu) {
             gui.showMenu();
+        } else if (obj == buttonAI) {
+            this.requestFocus();
         }
     }
 }
