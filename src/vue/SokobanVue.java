@@ -14,6 +14,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Classe creant le Graphique du niveau
+ */
 public class SokobanVue extends JPanel implements EcouteurModele {
     public static final int LARGEUR_CASE = 30;
     public static final int HAUTEUR_CASE = 30;
@@ -28,7 +31,10 @@ public class SokobanVue extends JPanel implements EcouteurModele {
     private int dimX;
     private int dimY;
 
-
+    /**
+     * Constructeur de SokobanVue
+     * @param modele Prend le Modele du jeu
+     */
     SokobanVue(Modele modele) {
         modele.ajoutEcouteur(this);
         this.modele = modele;
@@ -38,8 +44,12 @@ public class SokobanVue extends JPanel implements EcouteurModele {
         dimY = grid.getDimY();
         setPreferredSize(new Dimension(LARGEUR_CASE * dimX, HAUTEUR_CASE * dimY));
 
+
     }
 
+    /**
+     * Met en memoire les images qui vont servir dans l'affichage graphique
+     */
     public static void initializeResource() {
         try {
             imageVictoire = ImageIO.read(new File("src/docannexes/victoire.png"));
@@ -73,6 +83,10 @@ public class SokobanVue extends JPanel implements EcouteurModele {
         }
     }
 
+    /**
+     * Affiche le niveau de jeu
+     * @param g Graphics qui permet de dessiner des images
+     */
     @Override
     protected void paintComponent(Graphics g) {
 
@@ -83,6 +97,10 @@ public class SokobanVue extends JPanel implements EcouteurModele {
 
     }
 
+    /**
+     * Dessine les boites et le joueur
+     * @param g Graphics qui permet de dessiner des images
+     */
     public void paintReste(Graphics g) {
         State state = modele.getState();
         //Le joueur
@@ -104,6 +122,10 @@ public class SokobanVue extends JPanel implements EcouteurModele {
         //this.repaint();
     }
 
+    /**
+     * Dessine le niveau sans les Objets Deplacables
+     * @param g Graphics qui permet de dessiner des images
+     */
     private void paint_level(Graphics g) {
         //La grille
 
@@ -126,7 +148,9 @@ public class SokobanVue extends JPanel implements EcouteurModele {
         }
     }
 
-
+    /**
+     * Permet de mettre a jour l'affichage Graphique a chaque coup
+     */
     @Override
     public void modeleMisAJour(Object source) {
         //this.source = (Movable) source;
