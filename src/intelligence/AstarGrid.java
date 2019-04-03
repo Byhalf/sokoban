@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class AstarGrid {
     State state;
-    ArrayList goals = new ArrayList();
+    ArrayList<Node> goals = new ArrayList<>();
     Boolean[][] boolGrid;
     Boolean[][] boolGridUnmovable;
     int dimX, dimY;
@@ -87,6 +87,14 @@ public class AstarGrid {
             return res;
         else
             res.getBoolGrid()[movable.getX()][movable.getY()] = true;
+        return res;
+    }
+
+    public AstarGrid movableToUnmovable() {
+        AstarGrid res = makeCopy();
+        for (Box box : state.getBoxes()) {
+            res.getBoolGrid()[box.getX()][box.getY()] = false;
+        }
         return res;
     }
 

@@ -30,7 +30,7 @@ public class Main {
         for (Node node : path) {
             System.out.println(node);
         }
-        System.out.println(path.size());
+        //System.out.println(path.size());
 
 
     }

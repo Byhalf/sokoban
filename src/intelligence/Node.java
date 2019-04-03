@@ -39,10 +39,13 @@ public class Node {
         return (nodeToCompare.getX() == getX() && nodeToCompare.getY() == getY());
     }
 
-
+    public static int getHeuristicDistanceBetween(Node node1, Node node2) {
+        return Math.abs(node1.getX() - node2.getX()) + Math.abs(node1.getY() - node2.getY());
+    }
 
     public void setDistanceEnd(Node endNode) {
-        distanceEnd = Math.abs(getX() - endNode.getX()) + Math.abs(getY() - endNode.getY());
+        distanceEnd = getHeuristicDistanceBetween(this, endNode);
+        //distanceEnd = Math.abs(getX() - endNode.getX()) + Math.abs(getY() - endNode.getY());
     }
 
     public void setValue(int value) {
