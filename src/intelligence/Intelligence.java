@@ -25,7 +25,32 @@ public class Intelligence {
     }
 
     public boolean basicIntelligence() {
-        return false;
+        ArrayList<Direction> pathToTakeToBox = new ArrayList<>();
+        ArrayList<Direction> pathToTakeFromBox = new ArrayList<>();
+
+        if (!movableBoxes())
+            return false;
+        ArrayList<BoxPath> boxesPaths = possibleHeuristicPaths();
+        //possibleHeuristicPaths apelle basicPathToBox qui remplit l'array playerPaths.
+        if (boxesPaths == null)
+            return false;
+        for (BoxPath boxPath : boxesPaths) {
+            for (PlayerPath playerPath : playerPaths) {
+                if (boxPath.getBox().compare(playerPath.getTargetBox())) {
+                    if (playerPath.getNeighbour().compare(boxPath.getPlayerPosition())) {
+                        pathToTakeToBox = getDirection(playerPath.getPath(), new Node(player));
+                        pathToTakeFromBox = getDirection(boxPath.getPath(), boxPath.getBox());
+                        pathToTakeToBox.addAll(pathToTakeFromBox);
+
+                    }
+                }
+
+
+            }
+        }
+
+
+
     }
 
     /**
@@ -52,8 +77,8 @@ public class Intelligence {
         return newGrid;
     }
 
-    public ArrayList<ArrayList<Node>> possibleHeuristicPaths() {
-        ArrayList<ArrayList<Node>> res = null;
+    public ArrayList<BoxPath> possibleHeuristicPaths() {
+        ArrayList<BoxPath> res = null;
         ArrayList<BoxGoalCouples> pairs = heuristicBoxGoals();
         AstarGrid unMovablesUnaccessible = basicPathToBoxes();
         for (BoxGoalCouples pair : pairs) {
@@ -62,15 +87,33 @@ public class Intelligence {
             ArrayList<Node> path = algo.getPath(endNode);
             if (path.size() == 0)
                 return null;
-            res.add(path);
+            res.add(new BoxPath(pair.getBox(), pair.getGoal(), path));
         }
         return res;
 
     }
-
+/*
     public ArrayList<ArrayList<Node>> possiblePaths() {
+        ArrayList<Box> tempBoxes = new ArrayList<>(boxes);
+        ArrayList<Node> tempGoals = new ArrayList<>(goals);
+        AstarGrid unMovablesUnaccessible = basicPathToBoxes();
+        ArrayList<ArrayList<Node>> res = new ArrayList<>();
+        for(Box box:tempBoxes){
+            for(Node goal:tempGoals){
+                AstarAlgo algo = new AstarAlgo(new Node(box.getX(),box.getY()), goal);
+                Node endNode = algo.algoStart(unMovablesUnaccessible);
+                ArrayList<Node> path = algo.getPath(endNode);
+                if(path.size()!=0){
+                    tempGoals.remove(goal);
+                    res.add(path);
+                }elif()
+
+            }
+        }
         return null;
     }
+    */
+
 
     public ArrayList<BoxGoalCouples> heuristicBoxGoals() {
         ArrayList<BoxGoalCouples> res = new ArrayList<>();
