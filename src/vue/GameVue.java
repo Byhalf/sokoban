@@ -60,7 +60,7 @@ public class GameVue extends JPanel implements KeyListener, ActionListener {
         pan.add(buttonAI);
 
         nombreCoup = new JLabel();
-        nombreCoup.setText(String.valueOf(modele.getState().getNum_coup()));
+        nombreCoup.setText(String.valueOf(modele.getState().getNumCoup()));
         pan1.add(nombreCoup);
 
         sokovue.add(pan);
@@ -97,16 +97,16 @@ public class GameVue extends JPanel implements KeyListener, ActionListener {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             modele.deplacement(Direction.R);
-            nombreCoup.setText(String.valueOf(modele.getState().getNum_coup()));
+            nombreCoup.setText(String.valueOf(modele.getState().getNumCoup()));
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             modele.deplacement(Direction.L);
-            nombreCoup.setText(String.valueOf(modele.getState().getNum_coup()));
+            nombreCoup.setText(String.valueOf(modele.getState().getNumCoup()));
         } else if (e.getKeyCode() == KeyEvent.VK_UP) {
             modele.deplacement(Direction.U);
-            nombreCoup.setText(String.valueOf(modele.getState().getNum_coup()));
+            nombreCoup.setText(String.valueOf(modele.getState().getNumCoup()));
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             modele.deplacement(Direction.D);
-            nombreCoup.setText(String.valueOf(modele.getState().getNum_coup()));
+            nombreCoup.setText(String.valueOf(modele.getState().getNumCoup()));
         }
     }
 
@@ -120,11 +120,11 @@ public class GameVue extends JPanel implements KeyListener, ActionListener {
         if (obj == buttonCancel) {
             modele.annulDeplacement();
             this.requestFocus();
-            nombreCoup.setText(String.valueOf(modele.getState().getNum_coup()));
+            nombreCoup.setText(String.valueOf(modele.getState().getNumCoup()));
         } else if (obj == buttonRestart) {
             modele.resetLevel();
             this.requestFocus();
-            nombreCoup.setText(String.valueOf(modele.getState().getNum_coup()));
+            nombreCoup.setText(String.valueOf(modele.getState().getNumCoup()));
         } else if (obj == buttonMenu) {
             gui.showMenu();
         } else if (obj == buttonAI) {
