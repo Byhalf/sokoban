@@ -3,8 +3,8 @@ package vue;
 import modele.Modele;
 import utulities.LevelMaker;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import java.awt.HeadlessException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
