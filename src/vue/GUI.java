@@ -8,12 +8,20 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * Classe creant l'interface graphique avec tous les elements dessus
+ */
 public class GUI extends JFrame {
 
     MenuVue menuVue;
     GameVue gameVue;
     String levels;
 
+    /**
+     * Constructeur qui cree une interface graphique a partir d'un niveau
+     * @param levels Niveau voulu
+     * @throws HeadlessException Exception
+     */
     public GUI(String levels) throws HeadlessException {
         super("Sokoban");
         this.levels = levels;
@@ -39,8 +47,12 @@ public class GUI extends JFrame {
         add(menuVue);
         pack();
         setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    /**
+     * Affiche le menu du jeu
+     */
     public void showMenu() {
         remove(gameVue);
         add(menuVue);
