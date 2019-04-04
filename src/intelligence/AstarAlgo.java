@@ -19,9 +19,6 @@ public class AstarAlgo {
         while (openList.size() > 0) {
             Node bestBet = popMinFromList(openList);
             ArrayList<Node> neighbors = grid.getNeighbourNodes(bestBet);
-
-            System.out.println("number of neighbours " + neighbors.size());
-            System.out.println(bestBet);
             for (Node neighbor : neighbors) {
                 //System.out.println(neighbor);
                 neighbor.setParent(bestBet);

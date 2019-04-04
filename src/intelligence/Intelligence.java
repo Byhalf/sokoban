@@ -17,6 +17,7 @@ public class Intelligence {
         //basicGrid = sans les movables
         basicGrid = new AstarGrid(modele.getState());
         goals = basicGrid.getGoals();
+        this.modele = modele;
 
 
     }
@@ -26,6 +27,7 @@ public class Intelligence {
 
         if (!movableBoxes())
             return false;
+
         ArrayList<BoxPath> boxesPaths = possibleHeuristicPaths();
         //possibleHeuristicPaths apelle basicPathToBox qui remplit l'array playerPaths.
         if (boxesPaths == null)
@@ -69,7 +71,7 @@ public class Intelligence {
     }
 
     public ArrayList<BoxPath> possibleHeuristicPaths() {
-        ArrayList<BoxPath> res = null;
+        ArrayList<BoxPath> res = new ArrayList<>();
         ArrayList<BoxGoalCouples> pairs = heuristicBoxGoals();
         AstarGrid unMovablesUnaccessible = basicPathToBoxes();
         for (BoxGoalCouples pair : pairs) {

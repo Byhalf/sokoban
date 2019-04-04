@@ -1,12 +1,8 @@
-import intelligence.AstarAlgo;
-import intelligence.AstarGrid;
-import intelligence.Node;
+import intelligence.Intelligence;
 import modele.Modele;
 import utulities.FileParser;
 import utulities.LevelMaker;
-import vue.GUI;
-
-import java.util.ArrayList;
+import vue.SokobanVue;
 
 /**
  * @author KLAEYLE Pierre-Louis, LAFAY Gareth, MIALON Laurine, JAROSSAY Max
@@ -19,22 +15,13 @@ public class Main {
 
         //LevelMaker est composé de méthode static
 
-        new GUI(levels);
+        SokobanVue.initializeResource();
+        //new GUI(levels);
 
+        Modele modele = new Modele(LevelMaker.setLevel(levels, 3));
 
-        Modele modeleTest = new Modele(LevelMaker.setLevel(levels, 3));
-        AstarGrid gridTest = new AstarGrid(modeleTest.getState());
-        gridTest.showToDel();
-
-
-        AstarAlgo astarAlgo = new AstarAlgo(new Node(2, 1), new Node(7, 3));
-        Node endNode = astarAlgo.algoStart(gridTest);
-        ArrayList<Node> path = astarAlgo.getPath(endNode);
-        for (Node node : path) {
-            System.out.println(node);
-        }
-        System.out.println(path.size());
-
+        Intelligence intelligence = new Intelligence(modele);
+        System.out.println(intelligence.basicIntelligence());
 
     }
 }

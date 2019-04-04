@@ -34,10 +34,12 @@ public class AstarGrid {
         }
     }
 
-    public AstarGrid(State state, Boolean[][] boolGrid, ArrayList goals) {
+    public AstarGrid(State state, Boolean[][] boolGrid, ArrayList goals, int dimX, int dimY) {
         this.state = state;
         this.boolGrid = boolGrid;
         this.goals = goals;
+        this.dimX = dimX;
+        this.dimY = dimY;
     }
 
     Node[][] nodes;
@@ -65,7 +67,7 @@ public class AstarGrid {
     public AstarGrid makeCopy() {
         Boolean[][] originalBool = getBoolGrid();
         Boolean[][] boolGridCopy = copyBoolGrid();
-        return new AstarGrid(getState(), boolGridCopy, getGoals());
+        return new AstarGrid(getState(), boolGridCopy, getGoals(), getDimX(), getDimY());
     }
 
     public Boolean[][] copyBoolGrid() {
