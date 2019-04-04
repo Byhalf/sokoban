@@ -12,6 +12,7 @@ import java.util.Deque;
 public class Modele extends AbstractModeleEcouteur {
     private State state;
     private Deque<State> history = new ArrayDeque();
+    private State newState;
 
     //private Menu menu;
 
@@ -36,7 +37,12 @@ public class Modele extends AbstractModeleEcouteur {
      * @param d Direction (L,R,U,D)
      */
     public void deplacement(Direction d) {
+        newState = state.deplacement(d);
         history.addLast(state);
+        if(newState.getPlayer().getX()==state.getPlayer().getX() && newState.getPlayer().getY()==state.getPlayer().getY()){
+            history.removeLast();
+        }
+
         state = state.deplacement(d);
         fireChangement();
     }

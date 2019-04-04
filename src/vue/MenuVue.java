@@ -1,6 +1,7 @@
 package vue;
 
-import javax.swing.*;
+import javax.swing.JPanel;
+import javax.swing.JList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;

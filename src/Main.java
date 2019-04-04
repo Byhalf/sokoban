@@ -8,6 +8,9 @@ import vue.GUI;
 
 import java.util.ArrayList;
 
+/**
+ * @author KLAEYLE Pierre-Louis, LAFAY Gareth, MIALON Laurine, JAROSSAY Max
+ */
 public class Main {
     public static void main(String[] args) throws Exception {
 

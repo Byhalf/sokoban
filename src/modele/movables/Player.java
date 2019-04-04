@@ -23,7 +23,7 @@ public class Player extends Movable {
     public void deplacement(State s, Direction d) {
         if (isPossible(s, d)) {
             super.deplacement(s, d);
-            super.increment_num_coup();
+
         }
     }
 

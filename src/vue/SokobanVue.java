@@ -8,8 +8,10 @@ import modele.movables.Box;
 import utulities.EcouteurModele;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -91,7 +93,7 @@ public class SokobanVue extends JPanel implements EcouteurModele {
     protected void paintComponent(Graphics g) {
 
         super.paintComponent(g);
-        paint_level(g);
+        paintLevel(g);
         paintReste(g);
         //paint_movable(g,this.source);
 
@@ -126,7 +128,7 @@ public class SokobanVue extends JPanel implements EcouteurModele {
      * Dessine le niveau sans les Objets Deplacables
      * @param g Graphics qui permet de dessiner des images
      */
-    private void paint_level(Graphics g) {
+    private void paintLevel(Graphics g) {
         //La grille
 
 
