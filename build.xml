@@ -38,10 +38,12 @@
 </java>
 </target>
 <target name="javadoc" depends="compile">
-<javadoc sourcepath="src" destdir="${lib.dir}">
+<javadoc sourcepath="src" destdir="${lib.dir}" excludepackagenames="tests">
 <fileset dir="src" defaultexcludes="yes">
 <include name="src/**"/>
+<exclude name="src/levels/**"/>
 <exclude name="src/docannexes/**"/>
+
 </fileset>
 </javadoc>
 <exec executable="open" spawn="yes">
