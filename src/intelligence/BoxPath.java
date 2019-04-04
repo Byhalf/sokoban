@@ -1,19 +1,21 @@
 package intelligence;
 
+import modele.movables.Box;
+
 import java.util.ArrayList;
 
 public class BoxPath {
-    private Node box;
+    private Box box;
     private Node goal;
     private ArrayList<Node> path;
 
-    public BoxPath(Node box, Node goal, ArrayList<Node> path) {
+    public BoxPath(Box box, Node goal, ArrayList<Node> path) {
         this.box = box;
         this.goal = goal;
         this.path = path;
     }
 
-    public Node getBox() {
+    public Box getBox() {
         return box;
     }
 

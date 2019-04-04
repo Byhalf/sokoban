@@ -24,21 +24,19 @@ public class Intelligence {
 
     public boolean basicIntelligence() {
         ArrayList<Direction> pathToTake = new ArrayList<>();
-
         if (!movableBoxes())
             return false;
-
         ArrayList<BoxPath> boxesPaths = possibleHeuristicPaths();
         //possibleHeuristicPaths apelle basicPathToBox qui remplit l'array playerPaths.
         if (boxesPaths == null)
             return false;
         for (BoxPath boxPath : boxesPaths) {
             AstarAlgo algo = new AstarAlgo(new Node(modele.getState().getPlayer()), boxPath.getPlayerPosition());
-            Node endNode = algo.algoStart(basicGrid.movableToUnmovable());
+            Node endNode = algo.algoStart(basicGrid.movableToUnmovable(boxPath.getBox()));
             if (endNode == null)
                 return false;
             pathToTake = getDirection(algo.getPath(endNode), new Node(modele.getState().getPlayer()));
-            pathToTake.addAll(getDirection(boxPath.getPath(), boxPath.getBox()));
+            pathToTake.addAll(getDirection(boxPath.getPath(), new Node(boxPath.getBox())));
             makeMoves(pathToTake);
         }
         return true;
@@ -75,7 +73,7 @@ public class Intelligence {
         ArrayList<BoxGoalCouples> pairs = heuristicBoxGoals();
         AstarGrid unMovablesUnaccessible = basicPathToBoxes();
         for (BoxGoalCouples pair : pairs) {
-            AstarAlgo algo = new AstarAlgo(pair.getBox(), pair.getGoal());
+            AstarAlgo algo = new AstarAlgo(new Node(pair.getBox()), pair.getGoal());
             Node endNode = algo.algoStart(unMovablesUnaccessible);
             ArrayList<Node> path = algo.getPath(endNode);
             if (path.size() == 0)
@@ -112,16 +110,15 @@ public class Intelligence {
         ArrayList<BoxGoalCouples> res = new ArrayList<>();
         ArrayList<Node> newGoals = new ArrayList<>(goals);
         for (Box box : modele.getState().getBoxes()) {
-            Node boxNode = new Node(box);
             int compare = 0;
             Node bestGoal = null;
             for (Node goal : newGoals) {
-                if (Node.getHeuristicDistanceBetween(goal, boxNode) > compare) {
-                    compare = Node.getHeuristicDistanceBetween(goal, boxNode);
+                if (Node.getHeuristicDistanceBetween(goal, new Node(box)) > compare) {
+                    compare = Node.getHeuristicDistanceBetween(goal, new Node(box));
                     bestGoal = goal;
                 }
             }
-            res.add(new BoxGoalCouples(boxNode, bestGoal));
+            res.add(new BoxGoalCouples(box, bestGoal));
             newGoals.remove(bestGoal);
         }
         return res;

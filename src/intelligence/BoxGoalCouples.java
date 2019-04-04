@@ -1,15 +1,17 @@
 package intelligence;
 
+import modele.movables.Box;
+
 public class BoxGoalCouples {
-    Node box;
+    Box box;
     Node goal;
 
-    public BoxGoalCouples(Node box, Node goal) {
+    public BoxGoalCouples(Box box, Node goal) {
         this.box = box;
         this.goal = goal;
     }
 
-    public Node getBox() {
+    public Box getBox() {
         return box;
     }
 
