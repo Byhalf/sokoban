@@ -8,10 +8,8 @@ import modele.movables.Box;
 import utulities.EcouteurModele;
 
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
-
-import java.awt.Dimension;
-import java.awt.Graphics;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -155,8 +153,6 @@ public class SokobanVue extends JPanel implements EcouteurModele {
      */
     @Override
     public void modeleMisAJour(Object source) {
-        //this.source = (Movable) source;
-
         this.repaint();
         this.revalidate();
     }

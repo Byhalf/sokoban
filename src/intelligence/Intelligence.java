@@ -22,14 +22,14 @@ public class Intelligence {
 
     }
 
-    public boolean basicIntelligence() {
+    public ArrayList<Direction> basicIntelligence() {
         ArrayList<Direction> pathToTake = new ArrayList<>();
         if (!movableBoxes())
-            return false;
+            return pathToTake;
         ArrayList<BoxPath> boxesPaths = possibleHeuristicPaths();
         //possibleHeuristicPaths apelle basicPathToBox qui remplit l'array playerPaths.
         if (boxesPaths == null)
-            return false;
+            return pathToTake;
         for (BoxPath boxPath : boxesPaths) {
             AstarAlgo algo = new AstarAlgo(new Node(modele.getState().getPlayer()), boxPath.getPlayerPosition());
             Node endNode = algo.algoStart(basicGrid.movableToUnmovable(boxPath.getBox()));
@@ -39,9 +39,9 @@ public class Intelligence {
                 */
             pathToTake = getDirection(algo.getPath(endNode), new Node(modele.getState().getPlayer()));
             pathToTake.addAll(getDirection(boxPath.getPath(), new Node(boxPath.getBox())));
-            makeMoves(pathToTake);
+            //makeMoves(pathToTake);
         }
-        return true;
+        return pathToTake;
 
 
 
@@ -149,7 +149,7 @@ public class Intelligence {
         }
         return true;
     }
-
+/*
     public void makeMoves(ArrayList<Direction> directions) {
         for (Direction d : directions) {
             try {
@@ -160,6 +160,6 @@ public class Intelligence {
             }
         }
     }
-
+*/
 
 }

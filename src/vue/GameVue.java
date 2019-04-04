@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import java.util.ArrayList;
 
 
 /**
@@ -23,7 +23,7 @@ public class GameVue extends JPanel implements KeyListener, ActionListener {
     JPanel pan,pan1;
     GUI gui;
     JLabel nombreCoup;
-
+    ArrayList<Direction> ai = new ArrayList<>();
     /**
      * Constructeur des Objets exterieur au jeu
      * @param modele Modele du jeu
@@ -130,8 +130,18 @@ public class GameVue extends JPanel implements KeyListener, ActionListener {
             gui.showMenu();
         } else if (obj == buttonAI) {
             Intelligence intelligence = new Intelligence(modele);
-            intelligence.basicIntelligence();
+            ArrayList<Direction> mouvements = intelligence.basicIntelligence();
+            for (Direction d : mouvements) {
+                try {
+                    Thread.sleep(500);
+                    modele.deplacement(d);
+                } catch (InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                }
+            }
             this.requestFocus();
+
+
         }
 
     }

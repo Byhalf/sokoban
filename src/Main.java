@@ -1,7 +1,5 @@
-import intelligence.Intelligence;
-import modele.Modele;
 import utulities.FileParser;
-import utulities.LevelMaker;
+import vue.GUI;
 import vue.SokobanVue;
 
 /**
@@ -16,12 +14,6 @@ public class Main {
         //LevelMaker est composé de méthode static
 
         SokobanVue.initializeResource();
-        //new GUI(levels);
-
-        Modele modele = new Modele(LevelMaker.setLevel(levels, 3));
-
-        Intelligence intelligence = new Intelligence(modele);
-        System.out.println(intelligence.basicIntelligence());
-
+        new GUI(levels);
     }
 }

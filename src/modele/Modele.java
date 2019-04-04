@@ -42,7 +42,6 @@ public class Modele extends AbstractModeleEcouteur {
         if(newState.getPlayer().getX()==state.getPlayer().getX() && newState.getPlayer().getY()==state.getPlayer().getY()){
             history.removeLast();
         }
-
         state = state.deplacement(d);
         fireChangement();
     }
