@@ -73,6 +73,9 @@ public class AstarAlgo {
             endNode = endNode.getParent();
         }
         //path.add(0, start);
+        for (Node node : path) {
+            System.out.println(node);
+        }
         return path;
     }
 

@@ -33,8 +33,10 @@ public class Intelligence {
         for (BoxPath boxPath : boxesPaths) {
             AstarAlgo algo = new AstarAlgo(new Node(modele.getState().getPlayer()), boxPath.getPlayerPosition());
             Node endNode = algo.algoStart(basicGrid.movableToUnmovable(boxPath.getBox()));
+            /*
             if (endNode == null)
                 return false;
+                */
             pathToTake = getDirection(algo.getPath(endNode), new Node(modele.getState().getPlayer()));
             pathToTake.addAll(getDirection(boxPath.getPath(), new Node(boxPath.getBox())));
             makeMoves(pathToTake);

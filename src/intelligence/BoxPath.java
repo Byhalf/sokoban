@@ -20,7 +20,7 @@ public class BoxPath {
     }
 
     public Node getPlayerPosition() {
-        Node whereToGo = path.get(0);
+        Node whereToGo = path.get(1);
         Node whereToBe = null;
         if (whereToGo.getX() == box.getX()) {
             if (whereToGo.getY() == box.getY() - 1)
