@@ -3,30 +3,26 @@ package intelligence;
 import modele.Modele;
 import modele.movables.Box;
 import modele.movables.Direction;
-import modele.movables.Player;
 
 import java.util.ArrayList;
 
 public class Intelligence {
     AstarGrid basicGrid;
-    ArrayList<Box> boxes;
+    //ArrayList<Box> boxes;
     ArrayList<Node> goals;
     Modele modele;
-    ArrayList<PlayerPath> playerPaths = new ArrayList<>();
-    Player player;
+    //Player player;
 
     public Intelligence(Modele modele) {
         //basicGrid = sans les movables
         basicGrid = new AstarGrid(modele.getState());
-        boxes = modele.getState().getBoxes();
         goals = basicGrid.getGoals();
-        player = modele.getState().getPlayer();
+
 
     }
 
     public boolean basicIntelligence() {
-        ArrayList<Direction> pathToTakeToBox = new ArrayList<>();
-        ArrayList<Direction> pathToTakeFromBox = new ArrayList<>();
+        ArrayList<Direction> pathToTake = new ArrayList<>();
 
         if (!movableBoxes())
             return false;
@@ -35,19 +31,15 @@ public class Intelligence {
         if (boxesPaths == null)
             return false;
         for (BoxPath boxPath : boxesPaths) {
-            for (PlayerPath playerPath : playerPaths) {
-                if (boxPath.getBox().compare(playerPath.getTargetBox())) {
-                    if (playerPath.getNeighbour().compare(boxPath.getPlayerPosition())) {
-                        pathToTakeToBox = getDirection(playerPath.getPath(), new Node(player));
-                        pathToTakeFromBox = getDirection(boxPath.getPath(), boxPath.getBox());
-                        pathToTakeToBox.addAll(pathToTakeFromBox);
-
-                    }
-                }
-
-
-            }
+            AstarAlgo algo = new AstarAlgo(new Node(modele.getState().getPlayer()), boxPath.getPlayerPosition());
+            Node endNode = algo.algoStart(basicGrid.movableToUnmovable());
+            if (endNode == null)
+                return false;
+            pathToTake = getDirection(algo.getPath(endNode), new Node(modele.getState().getPlayer()));
+            pathToTake.addAll(getDirection(boxPath.getPath(), boxPath.getBox()));
+            makeMoves(pathToTake);
         }
+        return true;
 
 
 
@@ -61,8 +53,8 @@ public class Intelligence {
      */
     public AstarGrid basicPathToBoxes() {
         AstarGrid newGrid = basicGrid.movableToUnmovable();
-        Node playerPos = new Node(player.getX(), player.getY());
-        for (Box box : boxes) {
+        Node playerPos = new Node(modele.getState().getPlayer().getX(), modele.getState().getPlayer().getY());
+        for (Box box : modele.getState().getBoxes()) {
             ArrayList<Node> neighbours = newGrid.getNeighbourNodes(box);
             for (Node neighbour : neighbours) {
                 AstarAlgo algo = new AstarAlgo(playerPos, neighbour);
@@ -70,8 +62,7 @@ public class Intelligence {
                 ArrayList<Node> path = algo.getPath(endNode);
                 if (path.size() == 0)
                     newGrid.getBoolGrid()[neighbour.getX()][neighbour.getY()] = false;
-                else
-                    playerPaths.add(new PlayerPath(box, neighbour, path));
+
             }
         }
         return newGrid;
@@ -118,7 +109,7 @@ public class Intelligence {
     public ArrayList<BoxGoalCouples> heuristicBoxGoals() {
         ArrayList<BoxGoalCouples> res = new ArrayList<>();
         ArrayList<Node> newGoals = new ArrayList<>(goals);
-        for (Box box : boxes) {
+        for (Box box : modele.getState().getBoxes()) {
             Node boxNode = new Node(box);
             int compare = 0;
             Node bestGoal = null;
@@ -150,7 +141,7 @@ public class Intelligence {
     }
 
     public boolean movableBoxes() {
-        for (Box box : boxes) {
+        for (Box box : modele.getState().getBoxes()) {
             //inférieur ou égal à 1 car il faut 2 espace libre pour pousser une caisse
             if (basicGrid.getNeighbourNodes(box).size() <= 1 && !modele.getState().isOnGoal(box))
                 return false;

@@ -4,6 +4,7 @@ import intelligence.Node;
 import modele.Modele;
 import utulities.FileParser;
 import utulities.LevelMaker;
+import vue.GUI;
 
 import java.util.ArrayList;
 
@@ -14,11 +15,10 @@ public class Main {
         String levels = FileParser.parse(filePath1);
 
         //LevelMaker est composé de méthode static
-        /*
-        SokobanVue.initializeResource();
+
         new GUI(levels);
 
-        */
+
         Modele modeleTest = new Modele(LevelMaker.setLevel(levels, 3));
         AstarGrid gridTest = new AstarGrid(modeleTest.getState());
         gridTest.showToDel();
@@ -30,7 +30,7 @@ public class Main {
         for (Node node : path) {
             System.out.println(node);
         }
-        //System.out.println(path.size());
+        System.out.println(path.size());
 
 
     }
