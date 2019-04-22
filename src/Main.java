@@ -2,6 +2,9 @@ import utulities.FileParser;
 import vue.GUI;
 import vue.SokobanVue;
 
+/**
+ * @author KLAEYLE Pierre-Louis, LAFAY Gareth, MIALON Laurine, JAROSSAY Max
+ */
 public class Main {
     public static void main(String[] args) throws Exception {
 

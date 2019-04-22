@@ -1,7 +1,3 @@
-/**
- * LevelMaker permet de générer un niveau en fonction d'un String
- */
-
 package utulities;
 
 import modele.Case;
@@ -12,14 +8,16 @@ import modele.movables.Player;
 
 import java.util.ArrayList;
 
-
+/**
+ * LevelMaker permet de générer un niveau en fonction d'un String
+ */
 public class LevelMaker {
 
     /**
      * Sépare le String contenant les niveaux et en retourne un sous forme de String
      * @param lvls String contenant les niveaux
-     * @param lvlNbr le numéro du niveau à récupérer
-     * @return Un String avec le niveau demandé
+     * @param lvlNbr Numéro du niveau à récupérer
+     * @return String avec le niveau demandé
      */
     public static String getLevelAsString(String lvls, int lvlNbr) {
         return lvls.split(";.*\n")[lvlNbr - 1];
@@ -27,8 +25,8 @@ public class LevelMaker {
     }
     /**
      * Permet d'obtenir les dimension d'un niveau, pour qu'il soit tous rectangulaire
-     * @param lvl
-     * @return int[] contenant les dimensions
+     * @param lvl String du niveau dont on veut les dimensions
+     * @return int[] Tableau d'entier contenant les dimensions
      */
     public static int[] getDim(String lvl) {
         int height = 0;
@@ -51,8 +49,9 @@ public class LevelMaker {
     }
 
     /**
+     * Crée le niveau voulu
      * @param lvls String des niveaux
-     * @param lvlNbr le numéro du niveau requis
+     * @param lvlNbr Numéro du niveau requis
      * @return Un état de jeu State utilisable par le modèle
      */
     public static State setLevel(String lvls, int lvlNbr) {
@@ -89,6 +88,17 @@ public class LevelMaker {
                 case '$':
                     boxes.add(new Box(i, j));
                     break;
+                case '*':
+                    //caisse sur zone de rangement
+                    boxes.add(new Box(i, j));
+                    grid[i][j] = Case.GOAL;
+                    break;
+                case '+':
+                    // personnage sur zone de rangement
+                    player = new Player(i, j);
+                    grid[i][j] = Case.GOAL;
+                    break;
+
 
             }
             i++;

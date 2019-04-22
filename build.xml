@@ -1,0 +1,53 @@
+<project name="sokoban-ljmk" default="run" basedir=".">
+<property name="sources.dir" value="src"/>
+<property name="bin.dir" value="bin"/>
+<property name="lib.dir" value="lib"/>
+<property name="classe.main" value="Main"/>
+<property name="exe.dir" value="exe"/>
+<path id="classpath">
+<fileset dir="${lib.dir}">
+<include name="*.jar"/>
+</fileset>
+<pathelement location="${bin.dir}"/>
+</path>
+<target name="clean">
+<delete dir="${bin.dir}"/>
+<delete dir="${lib.dir}"/>
+<delete dir="${exe.dir}"/>
+<mkdir dir="${bin.dir}"/>
+<mkdir dir="${lib.dir}"/>
+<mkdir dir="${exe.dir}"/>
+</target>
+<target name="compile" description="Compilation des classes" depends="clean">
+<javac srcdir="${sources.dir}" destdir="${bin.dir}" debug="on" optimize="off" deprecation="on" includeantruntime="false" >
+<src path="src"/>
+<exclude name="**/Test*.java"/>
+<classpath refid="classpath"/>
+</javac>
+</target>
+<target name="jar" depends="compile">
+<jar destfile="${exe.dir}/main.jar" basedir="${bin.dir}">
+<manifest>
+<attribute name="Main-Class" value="${classe.main}"/>
+</manifest>
+</jar>
+</target>
+<target name="run" description="execution" depends="jar">
+<java jar="${exe.dir}/main.jar" fork="true">
+<classpath refid="classpath"/>
+</java>
+</target>
+<target name="javadoc" depends="compile">
+<javadoc sourcepath="src" destdir="${lib.dir}" excludepackagenames="tests">
+<fileset dir="src" defaultexcludes="yes">
+<include name="src/**"/>
+<exclude name="src/levels/**"/>
+<exclude name="src/docannexes/**"/>
+
+</fileset>
+</javadoc>
+<exec executable="open" spawn="yes">
+<arg value="${lib.dir}/index.html"/>
+</exec>
+</target>
+</project>
